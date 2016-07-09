@@ -1,10 +1,15 @@
-import { MyList } from "./list.controller";
+import { config } from './config';
+import { ApiService } from './api/api.service';
 
 class App {
-    constructor(listController) {
-        listController.list();
+    constructor() {
+        this.apiService = new ApiService(config, jQuery);
+    }
+
+    bootstrap() {
+        this.ApiService.getAllMediaItems();
     }
 }
 
-const listController = new MyList();
-var app = new App(listController);
+const app = new App();
+app.bootstrap();

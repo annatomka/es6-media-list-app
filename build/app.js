@@ -1,5 +1,5 @@
-define(["./list.controller"], function (_list) {
-    "use strict";
+define(['./config', './api/api.service'], function (_config, _api) {
+    'use strict';
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -7,12 +7,41 @@ define(["./list.controller"], function (_list) {
         }
     }
 
-    var App = function App(listController) {
-        _classCallCheck(this, App);
+    var _createClass = function () {
+        function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
 
-        listController.list();
-    };
+        return function (Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+        };
+    }();
 
-    var listController = new _list.MyList();
-    var app = new App(listController);
+    var App = function () {
+        function App() {
+            _classCallCheck(this, App);
+
+            this.apiService = new _api.ApiService(_config.config, jQuery);
+        }
+
+        _createClass(App, [{
+            key: 'bootstrap',
+            value: function bootstrap() {
+                this.ApiService.getAllMediaItems();
+            }
+        }]);
+
+        return App;
+    }();
+
+    var app = new App();
+    app.bootstrap();
 });
