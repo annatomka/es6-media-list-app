@@ -1,4 +1,4 @@
-define(['./config', './api/api.service'], function (_config, _api) {
+define(['./config', './app.constants', './api/api.service', './polling/polling.service', './event-emitter/event.emitter'], function (_config, _app, _api, _polling, _event) {
     'use strict';
 
     function _classCallCheck(instance, Constructor) {
@@ -30,12 +30,17 @@ define(['./config', './api/api.service'], function (_config, _api) {
             _classCallCheck(this, App);
 
             this.apiService = new _api.ApiService(_config.config, jQuery);
+            this.eventEmitter = new _event.EventEmitter();
+            this.pollingService = new _polling.PollingService(_config.config, _app.constants, this.eventEmitter, this.apiService);
         }
 
         _createClass(App, [{
             key: 'bootstrap',
             value: function bootstrap() {
-                this.ApiService.getAllMediaItems();
+                this.pollingService.start();
+                this.eventEmitter.on(_app.constants.EVENT_POLLING_RESULT, function (result) {
+                    console.log('result arrived ', result);
+                });
             }
         }]);
 
