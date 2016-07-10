@@ -1,4 +1,4 @@
-define(['./config', './app.constants', './api/api.service', './polling/polling.service', './event-emitter/event.emitter'], function (_config, _app, _api, _polling, _event) {
+define(['./api/api.service', './polling/polling.service', './event-emitter/event.emitter', './home/home.component'], function (_api, _polling, _event, _home) {
     'use strict';
 
     function _classCallCheck(instance, Constructor) {
@@ -29,18 +29,17 @@ define(['./config', './app.constants', './api/api.service', './polling/polling.s
         function App() {
             _classCallCheck(this, App);
 
-            this.apiService = new _api.ApiService(_config.config, jQuery);
+            this.apiService = new _api.ApiService(jQuery);
             this.eventEmitter = new _event.EventEmitter();
-            this.pollingService = new _polling.PollingService(_config.config, _app.constants, this.eventEmitter, this.apiService);
+            this.pollingService = new _polling.PollingService(this.eventEmitter, this.apiService);
+            this.homeComponent = new _home.HomeComponent(this.eventEmitter);
         }
 
         _createClass(App, [{
             key: 'bootstrap',
             value: function bootstrap() {
                 this.pollingService.start();
-                this.eventEmitter.on(_app.constants.EVENT_POLLING_RESULT, function (result) {
-                    console.log('result arrived ', result);
-                });
+                this.homeComponent.activate();
             }
         }]);
 

@@ -1,10 +1,12 @@
+import { API_URL } from '../app.constants';
+
 export class ApiService {
-    constructor(config, jQuery) {
-        this.apiUrl = config.apiUrl;
+    constructor(jQuery) {
+        this.apiUrl = API_URL;
         this.jQuery = jQuery;
     }
 
     getAllMediaItems() {
-        return this.jQuery.getJSON(`${this.apiUrl}?callback=?`, (result) => result);
+        return jQuery.getJSON(`${this.apiUrl}?callback=?`, (result) => result);
     }
 }
