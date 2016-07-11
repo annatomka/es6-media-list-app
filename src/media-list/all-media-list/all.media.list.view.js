@@ -12,8 +12,8 @@ export class AllMediaListView extends View {
     }
 
     generateMediaList() {
-        if(this.viewModel.items) {
-            let result = this.viewModel.items.map((item) => {
+        if (this.viewModel.items) {
+            const result = this.viewModel.items.map((item) => {
                 return generateMediaItemTemplate(item);
             });
             return result.join('');

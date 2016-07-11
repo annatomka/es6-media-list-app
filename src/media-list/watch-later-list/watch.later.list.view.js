@@ -4,7 +4,8 @@ export class WatchLaterListView extends View {
     template() {
         return `
             <div>
-                This is watch later list view
+                This is watch later list view<br/>
+                ${this.viewModel.watchListItems}
             </div>
         `;
     }
