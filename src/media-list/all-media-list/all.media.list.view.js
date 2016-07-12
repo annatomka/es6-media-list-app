@@ -1,23 +1,13 @@
 import { View } from '../../ui/view';
-import { generateMediaItemTemplate } from './media.item.template';
+import { mediaItemTemplate } from '../media.item.template';
 
 export class AllMediaListView extends View {
     template() {
         return `
-            <div>
-                All media<br/>
-                ${this.generateMediaList()}
+            <div id="allMedia">
+                <h3 class="title primary"><i class="zmdi zmdi-play-circle zmdi-hc-fw"></i> Available Media</h3>
+                ${this.list(this.component.items, mediaItemTemplate)}
             </div>
         `;
-    }
-
-    generateMediaList() {
-        if (this.viewModel.items) {
-            const result = this.viewModel.items.map((item) => {
-                return generateMediaItemTemplate(item);
-            });
-            return result.join('');
-        }
-        return '';
     }
 }

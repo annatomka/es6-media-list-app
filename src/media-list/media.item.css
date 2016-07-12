@@ -1,0 +1,38 @@
+.media-item{
+    padding: 17px;
+    background: #FBFBFB;
+    box-shadow: 1px 1px 1px rgba(216, 216, 216, 0.14);
+    margin: 15px 40px 15px 0px;
+    border: 1px solid rgba(200, 200, 200, 0.27);
+}
+
+.media-header > .media-picture-container{
+    width: 40px;
+    height: 100%;
+    float: left;
+    padding-top: 5px;
+}
+
+.media-header h4 {
+    margin: 0px 0px 5px 45px;
+}
+
+.media-detail{
+    margin-left: 45px;
+    font-size: 11px;
+    color: #5B5B5B;
+}
+
+
+.media-item p{
+    text-align: justify;
+    font-size: 12px;
+    color: #5B5B5B;
+}
+
+.watch-media-item {
+    padding: 20px;
+}
+.watch-media-item .media-header h4{
+    font-size:12px;
+}

@@ -1,20 +1,19 @@
-import { EVENT_POLLING_RESULT, EVENT_WATCHLIST_ADD, EVENT_WATCHLIST_REMOVE } from '../../app.constants';
+import { EVENT_MEDIA_LIST_UPDATED, EVENT_WATCHLIST_ADD, EVENT_WATCHLIST_REMOVE } from '../../app.constants';
 import { WatchLaterListView } from './watch.later.list.view';
-import { WatchLaterListService } from './watch.later.list.service';
+import { MediaListService } from './watch.later.list.service';
 
 export class WatchLaterListComponent {
-    constructor(eventEmitter) {
+    constructor(eventEmitter, mediaListService) {
         this.eventEmitter = eventEmitter;
-        this.viewModel = {};
-        this.viewModel.watchListItems = [];
-        this.view = new WatchLaterListView(this.viewModel);
-        this.watchLaterListService = new WatchLaterListService();
+        this.watchListItems = [];
+        this.view = new WatchLaterListView(this);
+        this.mediaListService = mediaListService;
     }
 
     activate() {
         console.log('watch later list component activated');
-        this.eventEmitter.on(EVENT_POLLING_RESULT, result => {
-            this.onPollingResult(result);
+        this.eventEmitter.on(EVENT_MEDIA_LIST_UPDATED, () => {
+            this.onMediaListUpdated();
         });
 
         this.eventEmitter.on(EVENT_WATCHLIST_ADD, item => {
@@ -25,24 +24,26 @@ export class WatchLaterListComponent {
             this.removeItemFromWatchList(item);
         });
 
-        this.viewModel.watchListItems = this.watchLaterListService.getItemsAsArray();
+        //this.watchListItems = this.mediaListService.getWatchList();
     }
 
-    onPollingResult(result) {
-        console.log('result arrived in watch later list component: ', result.length);
+    onMediaListUpdated(result) {
+        console.log('result arrived in watch later list component: ');
         //TODO: syncronize storage, if something is delete we must delete from storage too
+        this.watchListItems = this.mediaListService.getWatchList();
         this.view.render();
     }
 
-    addItemToWatchList(item) {
-        this.watchLaterListService.add(item);
-        this.viewModel.watchListItems = this.watchLaterListService.getItemsAsArray();
+    addItemToWatchList(id) {
+        this.mediaListService.addToWatchList(id);
+        this.watchListItems = this.mediaListService.getWatchList();
+        console.log(this.watchListItems);
         this.view.render();
     }
 
-    removeItemFromWatchList(item) {
-        this.watchLaterListService.remove(item);
-        this.viewModel.watchListItems = this.watchLaterListService.getItemsAsArray();
+    removeItemFromWatchList(id) {
+        this.mediaListService.removeFromWatchList(id);
+        this.watchListItems = this.mediaListService.getWatchList();
         this.view.render();
     }
 }

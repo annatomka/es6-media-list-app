@@ -15,7 +15,7 @@ export class PollingService {
     start() {
         this.poll();
         this.pollingIntervalId = setInterval(() => {
-            //this.poll();
+            this.poll();
         }, this.pollingIntervalMilliseconds);
     }
 

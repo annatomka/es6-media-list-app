@@ -2,36 +2,38 @@ import { EVENT_POLLING_RESULT, EVENT_WATCHLIST_ADD, EVENT_WATCHLIST_REMOVE } fro
 import { AllMediaListView } from './all.media.list.view';
 
 export class AllMediaListComponent {
-    constructor(eventEmitter) {
+    constructor(eventEmitter, mediaListService) {
         this.eventEmitter = eventEmitter;
-        this.viewModel = {};
-        this.view = new AllMediaListView(this.viewModel);
+        this.mediaListService = mediaListService;
+        this.view = new AllMediaListView(this);
     }
 
     activate() {
         console.log('all media list component activated');
-        this.viewModel.addToWatchLaterList = this.addToWatchLaterList;
+
         this.eventEmitter.on(EVENT_POLLING_RESULT, result => {
             this.onPollingResult(result);
             let testItem = result[0];
-            setTimeout(() => {
-                this.eventEmitter.emit(EVENT_WATCHLIST_ADD, testItem);
-            }, 5000);
-
-            setTimeout(() => {
-                this.eventEmitter.emit(EVENT_WATCHLIST_REMOVE, testItem);
-            }, 15000);
+            //setTimeout(() => {
+            //    this.eventEmitter.emit(EVENT_WATCHLIST_ADD, testItem.id);
+            //}, 5000);
+            //
+            //setTimeout(() => {
+            //    this.eventEmitter.emit(EVENT_WATCHLIST_REMOVE, testItem.id);
+            //}, 15000);
         });
     }
 
     onPollingResult(result) {
         console.log('result arrived in all media list component: ', result.length);
-        this.viewModel.items = result;
+        this.items = result;
+        this.mediaListService.updateCache(this.items);
         this.view.render();
     }
 
-    addToWatchLaterList() {
-        console.log("addToWatchLaterList called");
-        console.log(this)
+    addToWatchLaterList(mediaId) {
+        console.log("addToWatchLaterList called with param: ", mediaId);
+        console.log(this);
+        this.eventEmitter.emit(EVENT_WATCHLIST_ADD, mediaId);
     }
 }
