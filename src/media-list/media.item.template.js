@@ -5,6 +5,7 @@ export function mediaItemTemplate(mediaItem) {
             <div class="media-picture-container">
                 <img src="${mediaItem.picture}"/>
             </div>
+            <h6>${mediaItem.id}</h6>
             <h4>${mediaItem.title}</h4>
             <div class="media-detail">
                 <span class="location">from ${mediaItem.location.city}, ${mediaItem.location.country}</span>

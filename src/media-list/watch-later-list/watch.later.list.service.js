@@ -1,11 +1,10 @@
 import { StorageService } from '../../storage/storage.service';
 import { STORAGE_ID_WATCH_LATER, EVENT_MEDIA_LIST_UPDATED } from '../../app.constants';
 
-export class MediaListService {
+export class WatchListService {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
         this.storageService = new StorageService(localStorage);
-        this.mediaListCache = {};
         this.watchListEntries = [];
         this.init();
     }
@@ -27,11 +26,8 @@ export class MediaListService {
         });
     }
 
-    updateCache(newMediaList) {
-        newMediaList.forEach((newMediaItem)=> {
-            this.mediaListCache[newMediaItem.id] = newMediaItem;
-        });
-
+    updateWatchList(mediaListCache) {
+        this.mediaListCache = mediaListCache;
         let updatedWatchListEntries = [];
         this.watchListEntries.forEach((entry) => {
             let mediaItem = this.mediaListCache[entry.mediaId];
@@ -41,8 +37,6 @@ export class MediaListService {
         });
         this.watchListEntries = updatedWatchListEntries;
         this.storageService.add(STORAGE_ID_WATCH_LATER, this.watchListEntries);
-
-        this.eventEmitter.emit(EVENT_MEDIA_LIST_UPDATED);
     }
 
     addToWatchList(id) {

@@ -13,19 +13,10 @@ export class AllMediaListComponent {
 
         this.eventEmitter.on(EVENT_POLLING_RESULT, result => {
             this.onPollingResult(result);
-            let testItem = result[0];
-            //setTimeout(() => {
-            //    this.eventEmitter.emit(EVENT_WATCHLIST_ADD, testItem.id);
-            //}, 5000);
-            //
-            //setTimeout(() => {
-            //    this.eventEmitter.emit(EVENT_WATCHLIST_REMOVE, testItem.id);
-            //}, 15000);
         });
     }
 
     onPollingResult(result) {
-        console.log('result arrived in all media list component: ', result.length);
         this.items = result;
         this.mediaListService.updateCache(this.items);
         this.view.render();

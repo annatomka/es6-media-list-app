@@ -1,12 +1,14 @@
 import { AllMediaListComponent } from '../media-list/all-media-list/all.media.list.compontent';
 import { WatchLaterListComponent } from '../media-list/watch-later-list/watch.later.list.component';
-import { MediaListService } from '../media-list/watch-later-list/watch.later.list.service';
+import { WatchListService } from '../media-list/watch-later-list/watch.later.list.service';
+import { MediaListService } from '../media-list/media.list.service';
 
 export class HomeComponent {
     constructor(eventEmitter) {
+        this.watchListService = new WatchListService(eventEmitter);
         this.mediaListService = new MediaListService(eventEmitter);
-        this.allMediaListComponent = new AllMediaListComponent(eventEmitter, this.mediaListService );
-        this.watchLaterListComponent = new WatchLaterListComponent(eventEmitter, this.mediaListService );
+        this.allMediaListComponent = new AllMediaListComponent(eventEmitter, this.mediaListService);
+        this.watchLaterListComponent = new WatchLaterListComponent(eventEmitter, this.watchListService);
     }
 
     activate() {
