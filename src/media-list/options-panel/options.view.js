@@ -5,19 +5,19 @@ export class OptionsView extends View {
         return `
             <div id="filterPanel">
                 <div id="media-filter-panel">
-                    <span>Sort by</span>
+                    <span>Sort By</span>
                     <select data-change="onSortByPropertySelectionChanged">
                         <option value="id">id</option>
                         <option value="title" selected>title</option>
                         <option value="viewers">viewers</option>
                     </select>
-                    <span>Dir</span>
+                    <span>Sort Dir</span>
                     <select data-change="onSortByDirSelectionChanged">
                         <option value="1">asc</option>
                         <option value="-1">desc</option>
                     </select>
                     <span>Polling interval</span>
-                    <input data-change="inputTest" value="1000"/>
+                    <input data-change="onPollingInputChanged" value="10"/>
                 </div>
 
 

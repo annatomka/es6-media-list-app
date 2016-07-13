@@ -1,4 +1,5 @@
 export const EVENT_POLLING_RESULT = 'polling:result';
+export const EVENT_POLLING_INTERVAL_CHANGED = 'polling:changed';
 export const EVENT_WATCHLIST_ADD = 'watchlist:add';
 export const EVENT_WATCHLIST_REMOVE = 'watchlist:remove';
 export const EVENT_MEDIA_LIST_UPDATED = 'medialist:updated';
