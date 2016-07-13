@@ -19,6 +19,7 @@ export class View {
     render() {
         this.$template.html(this.template());
         this.registerClickHandlers();
+        this.registerChangeHandlers();
     }
 
     registerClickHandlers() {
@@ -40,6 +41,30 @@ export class View {
         });
     }
 
+    registerChangeHandlers(){
+        this.$template.find('[data-change]').each((index, changedItem) => {
+            const $changedItem = jQuery(changedItem);
+            const functionToCallOnChange = $changedItem.data('change');
+            const functionReference = this.component[functionToCallOnChange];
+
+            if (functionReference && typeof functionReference === 'function') {
+                $changedItem.change((event) => {
+                    console.log('item changed');
+                    var val = jQuery(event.target).val();
+                    functionReference.call(this.component, val);
+                });
+            }
+        });
+    }
+
+    registerBindOptionHandlers(){
+        this.$template.find('[data-bind-value]').each((index, changedItem) => {
+            const $changedItem = $(changedItem);
+            $changedItem.change((event) => {
+                console.log('item changed');
+            });
+        });
+    }
     list(items, templateFn) {
         if (items && templateFn) {
             const result = items.map((item) => {

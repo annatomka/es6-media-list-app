@@ -5,12 +5,13 @@ export function mediaItemTemplate(mediaItem) {
             <div class="media-picture-container">
                 <img src="${mediaItem.picture}"/>
             </div>
-            <h6>${mediaItem.id}</h6>
             <h4>${mediaItem.title}</h4>
             <div class="media-detail">
-                <span class="location">from ${mediaItem.location.city}, ${mediaItem.location.country}</span>
+                <span class="location">from ${mediaItem.location && mediaItem.location.city}, ${mediaItem.location && mediaItem.location.country}</span>
                 <span class="separator">•</span>
                 <span class="viewers"> <i class="zmdi zmdi-eye"></i> <strong>${mediaItem.viewers}</strong></span>
+                <span class="separator">•</span>
+                <span><small>#${mediaItem.id}</small></span>
             </div>
         </div>
         <p>${mediaItem.description}</p>
