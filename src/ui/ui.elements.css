@@ -17,3 +17,41 @@ button.small{
     padding: 6px;
     font-size: 10px;
 }
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 2px 7px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 10px;
+}
+
+.badge.live {
+    background-color: #ff7158;
+}
+
+
+select, input {
+    border: none;
+    background: transparent;
+    padding: 7px 0 7px 0;
+    color: #505050;
+    border-bottom: 2px solid rgba(224, 224, 224, 0.78);
+    -webkit-transition: border .3s ease-in-out;
+    -moz-transition: border .3s ease-in-out;
+    -ms-transition: border .3s ease-in-out;
+    -o-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-bottom-color: #00D8A9;
+}

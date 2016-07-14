@@ -12,6 +12,7 @@ export class MediaListService {
             dir: 1
         };
 
+        this.filterBy = '*';
         this.init();
     }
 
@@ -25,7 +26,7 @@ export class MediaListService {
             this.mediaListCache[newMediaItem.id] = newMediaItem;
         });
 
-        this.sortMediaList();
+
         this.eventEmitter.emit(EVENT_MEDIA_LIST_UPDATED, this.mediaListCache);
     }
 
@@ -41,8 +42,27 @@ export class MediaListService {
         this.sortMediaList();
     }
 
-    sortMediaList() {
+    updateFilterBy(filter) {
+        this.filterBy = filter;
+        this.filterMediaList();
+    }
 
+    filterMediaList() {
+        if (this.filterBy !== '*') {
+            return this.mediaList.filter((mediaItem) => {
+                return (this.filterBy === 'live' && mediaItem.isLive)
+                    || (this.filterBy === 'offline' && !mediaItem.isLive)
+                    || (this.filterBy === 'video' && mediaItem.type === 'recorded');
+            });
+        }
+        return this.mediaList;
+    }
+
+    getMediaList(){
+        this.sortMediaList();
+        return this.filterMediaList();
+    }
+    sortMediaList() {
         this.mediaList.sort((a, b) => this.comparator(a, b));
     }
 

@@ -1,4 +1,5 @@
 import { View } from '../../ui/view';
+import { list } from '../../ui/view.helpers';
 import { mediaItemTemplate } from '../media.item.template';
 
 export class AllMediaListView extends View {
@@ -6,7 +7,8 @@ export class AllMediaListView extends View {
         return `
             <div id="allMedia">
                 <h3 class="title primary"><i class="zmdi zmdi-play-circle zmdi-hc-fw"></i> Available Media</h3>
-                ${this.list(this.component.items, mediaItemTemplate)}
+                <div id="optionsPanelContainer"></div>
+                ${list(this.component.items, mediaItemTemplate)}
             </div>
         `;
     }

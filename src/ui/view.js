@@ -6,10 +6,16 @@ export class View {
     }
 
     buildView() {
+        let parentDOMId = 'body';
+
+        if(this.component.parent && this.component.parent.view.getDOMId){
+            parentDOMId = this.component.parent.view.getDOMId();
+        }
+
         this.$template = jQuery(`<div></div>`);
 
         this.render();
-        jQuery('body').append(this.$template);
+        jQuery(parentDOMId).append(this.$template);
     }
 
     template() {
@@ -64,14 +70,5 @@ export class View {
                 console.log('item changed');
             });
         });
-    }
-    list(items, templateFn) {
-        if (items && templateFn) {
-            const result = items.map((item) => {
-                return templateFn(item);
-            });
-            return result.join('');
-        }
-        return '';
     }
 }

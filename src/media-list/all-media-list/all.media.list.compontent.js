@@ -3,8 +3,9 @@ import { AllMediaListView } from './all.media.list.view';
 import { OptionsComponent } from '../options-panel/options.panel.component';
 
 export class AllMediaListComponent {
-    constructor(eventEmitter, mediaListService) {
+    constructor(parentComponent, eventEmitter, mediaListService) {
         this.eventEmitter = eventEmitter;
+        this.parent = parentComponent;
         this.mediaListService = mediaListService;
         this.items = [];
         this.optionsComponent = new OptionsComponent(this,eventEmitter,mediaListService);
@@ -23,7 +24,7 @@ export class AllMediaListComponent {
     }
 
     updateMediaList() {
-        this.items = this.mediaListService.mediaList;
+        this.items = this.mediaListService.getMediaList();
         this.view.render();
     }
 

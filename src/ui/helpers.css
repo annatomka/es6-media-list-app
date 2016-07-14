@@ -19,10 +19,26 @@
     margin-top: 10px;
 }
 
+.m-r-5 {
+    margin-right: 5px;
+}
+
+.m-r-10 {
+    margin-right: 10px;
+}
+
 .m-b-5 {
     margin-bottom: 5px;
 }
 
 .m-b-10 {
     margin-bottom: 10px;
+}
+
+.m-l-5 {
+    margin-left: 5px;
+}
+
+.m-l-10 {
+    margin-left: 10px;
 }

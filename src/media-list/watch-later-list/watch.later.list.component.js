@@ -2,8 +2,9 @@ import { EVENT_MEDIA_LIST_UPDATED, EVENT_WATCHLIST_ADD, EVENT_WATCHLIST_REMOVE }
 import { WatchLaterListView } from './watch.later.list.view';
 
 export class WatchLaterListComponent {
-    constructor(eventEmitter, watchListService) {
+    constructor(parentComponent, eventEmitter, watchListService) {
         this.eventEmitter = eventEmitter;
+        this.parent = parentComponent;
         this.watchListItems = [];
         this.mediaListCache = {};
         this.view = new WatchLaterListView(this);
