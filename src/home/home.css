@@ -16,7 +16,6 @@ body{
 
 #allMedia {
     width: 70%;
-
 }
 
 #watchList {
@@ -39,4 +38,15 @@ body{
 
 .clear{
     clear: both;
+}
+
+input[type="range"]{
+    width:150px !important;
+    padding-bottom: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.polling-interval {
+    font-size: 12px;
 }
