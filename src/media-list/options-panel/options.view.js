@@ -10,6 +10,7 @@ export class OptionsView extends View {
                         <option value="id">id</option>
                         <option value="title" selected>title</option>
                         <option value="viewers">viewers</option>
+                        <option value="description">description</option>
                     </select>
                     <span><i class="zmdi zmdi-sort-asc"></i> </span>
                     <select data-change="onSortByDirSelectionChanged" class="m-r-5">
@@ -26,8 +27,6 @@ export class OptionsView extends View {
                     <span><i class="zmdi zmdi-time-restore"></i> </span>
                     <input data-change="onPollingInputChanged" value="10"/>
                 </div>
-
-
             </div>
         `;
     }

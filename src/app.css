@@ -1,46 +1,5 @@
 @import url(ui/ui.elements.css);
 @import url(ui/helpers.css);
 @import url(media-list/media.item.css);
-
-body{
-    font-family: 'Open Sans', sans-serif;
-    font-weight:300;
-    color: #1e1e1e;
-}
-
-.main-title{
-    text-align: left;
-    font-size: 30px;
-    color: rgba(231, 231, 231, 0.73);
-    text-shadow: 1px 1px 2px white;
-}
-#allMedia, #watchList{
-    float:left;
-}
-
-#allMedia {
-    width: 75%;
-
-}
-
-.title{
-    padding: 17px;
-    background: #FFDE00;
-    color: white;
-    margin-top: 0px;
-}
-
-.title.primary{
-    background: rgb(123, 216, 160);
-    color: white;
-    margin-right: 38px;
-}
-
-#watchList {
-    width: 25%;
-    background: rgb(251, 251, 251);
-}
-
-.clear{
-    clear: both;
-}
+@import url(home/home.css);
+@import url(ui/responsive.css);

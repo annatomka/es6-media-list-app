@@ -1,0 +1,36 @@
+@media screen and (max-width: 800px) {
+
+    #allMedia {
+        width: 100%;
+
+    }
+
+    #watchList {
+        width: 100%;
+    }
+
+    .container{
+        margin-left:8%;
+        margin-right:8%;
+    }
+
+    .title.primary{
+        margin-right:0px;
+    }
+
+    .media-item{
+        margin: 15px 0px 15px 0px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1300px) {
+
+    #allMedia {
+        width: 60%;
+
+    }
+
+    #watchList {
+        width: 40%;
+    }
+}
