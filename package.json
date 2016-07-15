@@ -20,6 +20,7 @@
     "jasmine": "2.4.1",
     "jasmine-core": "2.4.1",
     "jquery": "3.1.0",
+    "requirejs": "^2.2.0",
     "karma": "0.12.37",
     "karma-babel-preprocessor": "6.0.1",
     "karma-chrome-launcher": "1.0.1",
