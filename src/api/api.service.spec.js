@@ -1,20 +1,32 @@
 import { ApiService } from './api.service';
 
 describe('ApiService', () => {
-    it('should add two numbers', () => {
-        let jQuery = {
-            getJSON: function () {
-                "use strict";
+    let mockMediaItems = [{
+        title: "mock media item"
+    }];
 
-            }
-        };
+    let jQuery = {
+        getJSON: () => {}
+    };
 
-        let mockItems = [{
-            title: "my mock item"
-        }];
-        let apiService = new ApiService(jQuery);
-        spyOn(jQuery, "getJSON").and.returnValue(mockItems);
+    let apiService = new ApiService(jQuery);
 
-        expect(jQuery.getJSON).toHaveBeenCalled();
-    });
+    describe('getAllMediaItems', ()=> {
+        let requestedMediaItems = [];
+
+        beforeEach(()=> {
+            spyOn(jQuery, 'getJSON').and.returnValue(mockMediaItems);
+            requestedMediaItems = apiService.getAllMediaItems();
+        });
+
+
+        it('should call getJSON', () => {
+            expect(jQuery.getJSON).toHaveBeenCalled();
+        });
+
+        it('should return the requested value', () => {
+            expect(requestedMediaItems).toEqual(mockMediaItems);
+        });
+
+    })
 });

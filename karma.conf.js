@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Fri Jul 15 2016 21:35:29 GMT+0200 (CEST)
+// Generated on Sat Jul 16 2016 01:28:56 GMT+0200 (CEST)
 
 module.exports = function(config) {
   config.set({
@@ -10,13 +10,14 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine' ],
+    frameworks: ['jasmine', 'requirejs'],
 
-      plugins: ['karma-jasmine','karma-chrome-launcher','karma-babel-preprocessor'],
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'src/**/*.spec.js', included: true}
+      'test-main.js',
+      {pattern: 'src', included: false},
+      {pattern: 'src/**/*js', included: false}
     ],
 
 
@@ -27,19 +28,9 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-      preprocessors: {
-          'src/**/*.js': ['babel'],
-          'test/**/*.js': ['babel']
-      },
-      babelPreprocessor: {
-          options: {
-              presets: ['es2015'],
-              sourceMap: 'inline'
-          },
-          sourceFileName: function (file) {
-              return file.originalPath;
-          }
-      },
+    preprocessors: {
+        'src/**/*.js': ['babel']
+    },
 
 
     // test results reporter to use
@@ -67,15 +58,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-    // Concurrency level
-    // how many browser should be started simultaneous
-    concurrency: Infinity
+    singleRun: false
   })
-}
+};

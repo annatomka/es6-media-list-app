@@ -7,6 +7,6 @@ export class ApiService {
     }
 
     getAllMediaItems() {
-        return jQuery.getJSON(`${this.apiUrl}?callback=?`, (result) => result);
+        return this.jQuery.getJSON(`${this.apiUrl}?callback=?`, (result) => result);
     }
 }
