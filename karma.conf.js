@@ -10,13 +10,13 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine' ],
 
-      plugins: ['karma-requirejs','karma-jasmine','karma-chrome-launcher','karma-babel-preprocessor'],
+      plugins: ['karma-jasmine','karma-chrome-launcher','karma-babel-preprocessor'],
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'src/**/**.js', included: false}
+      {pattern: 'src/**/*.spec.js', included: true}
     ],
 
 
@@ -34,7 +34,6 @@ module.exports = function(config) {
       babelPreprocessor: {
           options: {
               presets: ['es2015'],
-              "plugins": ["transform-es2015-modules-amd"],
               sourceMap: 'inline'
           },
           sourceFileName: function (file) {
