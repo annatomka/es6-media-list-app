@@ -1,31 +1,31 @@
 import { ApiService } from './api.service';
 
 describe('ApiService', () => {
-    let mockMediaItems = [{
-        title: "mock media item"
-    }];
-
-    let jQuery = {
-        getJSON: () => {}
-    };
-
-    let apiService = new ApiService(jQuery);
-
     describe('getAllMediaItems', ()=> {
-        let requestedMediaItems = [];
-
+        let apiService, mockMediaItems, jQuery;
         beforeEach(()=> {
-            spyOn(jQuery, 'getJSON').and.returnValue(mockMediaItems);
-            requestedMediaItems = apiService.getAllMediaItems();
+            mockMediaItems = [{
+                title: "mock media item"
+            }];
+
+            jQuery = jasmine.createSpyObj("jQuery", ["getJSON"]);
+            jQuery.getJSON.and.returnValue(mockMediaItems);
+
+            apiService = new ApiService(jQuery);
         });
 
+        it('should exist', () => {
+            expect(apiService.getAllMediaItems).toBeDefined();
+        });
 
         it('should call getJSON', () => {
+            apiService.getAllMediaItems();
             expect(jQuery.getJSON).toHaveBeenCalled();
         });
 
         it('should return the requested value', () => {
-            expect(requestedMediaItems).toEqual(mockMediaItems);
+            let result = apiService.getAllMediaItems();
+            expect(result).toEqual(mockMediaItems);
         });
 
     })
