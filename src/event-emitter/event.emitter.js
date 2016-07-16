@@ -14,9 +14,7 @@ export class EventEmitter {
     emit(eventKey, data) {
         const subscribers = this.onSubscribers[eventKey];
         if (subscribers && subscribers.length > 0) {
-            subscribers.forEach(subscriber => {
-                subscriber(data);
-            });
+            subscribers.forEach(subscriber => subscriber(data));
         }
     }
 }
