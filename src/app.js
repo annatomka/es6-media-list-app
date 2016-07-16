@@ -3,8 +3,8 @@ import { PollingService } from './polling/polling.service';
 import { EventEmitter } from './event-emitter/event.emitter';
 import { HomeComponent } from './home/home.component';
 
-class App {
-    constructor() {
+export class App {
+    constructor(jQuery) {
         this.apiService = new ApiService(jQuery);
         this.eventEmitter = new EventEmitter();
         this.pollingService = new PollingService(this.eventEmitter, this.apiService);
@@ -17,5 +17,6 @@ class App {
     }
 }
 
-const app = new App();
+const app = new App(jQuery);
 app.bootstrap();
+
