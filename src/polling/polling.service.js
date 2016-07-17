@@ -7,11 +7,8 @@ export class PollingService {
         this.pollingIntervalMilliseconds = POLLING_INTERVAL_MS;
         this.pollingIntervalId = null;
 
-        this.init();
-    }
+        this.eventEmitter.on(EVENT_POLLING_INTERVAL_CHANGED, this.restartWithNewIntervalSeconds);
 
-    init() {
-        this.eventEmitter.on(EVENT_POLLING_INTERVAL_CHANGED, (newInterval) => this.restartWithNewIntervalSeconds(newInterval));
     }
 
     setPollingIntervalMilliseconds(intervalMs) {
