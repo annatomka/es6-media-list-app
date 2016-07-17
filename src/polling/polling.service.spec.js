@@ -84,14 +84,14 @@ describe('PollingService', () => {
             expect(apiServiceSpy.getAllMediaItems).toHaveBeenCalled();
         });
 
-        //it('should call EventEmitter emit', ()=>{
-        //    pollingService.poll();
-        //    jasmine.clock().tick(100);
-        //
-        //    expect(eventEmitterSpy.emit).toHaveBeenCalled();
-        //
-        //
-        //});
+        it('should call EventEmitter emit', ()=>{
+            pollingService.poll();
+            jasmine.clock().tick(100);
+
+            expect(eventEmitterSpy.emit).toHaveBeenCalled();
+
+
+        });
     });
 
     describe('stop', ()=>{
