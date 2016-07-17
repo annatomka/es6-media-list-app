@@ -26,7 +26,6 @@ export class OptionsView extends View {
                             <option value="video">Video only</option>
                         </select>
                     </div>
-                    <!--<input data-change="onPollingInputChanged" value="10"/>-->
                     <div class="pull-right polling-interval">
                         <i class="zmdi zmdi-time-restore"></i>
                         <span>5s</span>

@@ -10,7 +10,6 @@ describe('PollingService', () => {
     });
 
     describe('constructor', ()=> {
-
         it('should register restartWithNewIntervalSeconds on EVENT_POLLING_INTERVAL_CHANGED', () => {
             pollingService = new PollingService(eventEmitterSpy, apiServiceSpy);
             expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_POLLING_INTERVAL_CHANGED, pollingService.restartWithNewIntervalSeconds);
@@ -69,7 +68,7 @@ describe('PollingService', () => {
         beforeEach(()=> {
             getAllMediaItemsDeferred = $.Deferred();
             jasmine.clock().install();
-            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred);
+            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred.promise());
             pollingService = new PollingService(eventEmitterSpy, apiServiceSpy);
         });
 
@@ -100,7 +99,7 @@ describe('PollingService', () => {
 
         beforeEach(()=> {
             getAllMediaItemsDeferred = $.Deferred();
-            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred);
+            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred.promise());
             pollingService = new PollingService(eventEmitterSpy, apiServiceSpy);
         });
 
@@ -120,7 +119,7 @@ describe('PollingService', () => {
             expect(window.clearInterval).not.toHaveBeenCalledWith(pollingService.pollingIntervalId);
         });
 
-        it('should call clearInterval when there was polling interval id', ()=> {
+        it('should call clearInterval when polling interval id exists', ()=> {
             spyOn(window, 'clearInterval');
 
             pollingService.start();
@@ -137,7 +136,7 @@ describe('PollingService', () => {
         beforeEach(()=> {
             getAllMediaItemsDeferred = $.Deferred();
             pollingService = new PollingService(eventEmitterSpy, apiServiceSpy);
-            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred);
+            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred.promise());
         });
 
         it('should exist', ()=> {
@@ -155,11 +154,11 @@ describe('PollingService', () => {
 
     describe('restartWithNewIntervalSeconds', ()=> {
         let getAllMediaItemsDeferred;
+
         beforeEach(()=> {
             getAllMediaItemsDeferred = $.Deferred();
-            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred);
+            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred.promise());
             pollingService = new PollingService(eventEmitterSpy, apiServiceSpy);
-
         });
 
         it('should exist', ()=> {

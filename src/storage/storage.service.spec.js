@@ -1,4 +1,5 @@
 import { StorageService } from './storage.service';
+import { STORAGE_PREFIX } from '../app.constants';
 
 describe('StorageService', () => {
     let mockLocalStorage, storageService;
@@ -9,16 +10,17 @@ describe('StorageService', () => {
             storageService = new StorageService(mockLocalStorage);
         });
 
-        it('should exist', ()=> {
+        it('should exist', () => {
             expect(storageService.add).toBeDefined();
         });
 
         it('should call setItem', ()=> {
             let NEW_ITEM_KEY = "new item key";
-            let newItem = {};
+            let newItem = {a: 2};
+            let newItemSerialized = '{"a":2}';
 
             storageService.add(NEW_ITEM_KEY, newItem);
-            expect(mockLocalStorage.setItem).toHaveBeenCalled();
+            expect(mockLocalStorage.setItem).toHaveBeenCalledWith(STORAGE_PREFIX + NEW_ITEM_KEY, newItemSerialized);
         });
     });
 
@@ -38,7 +40,7 @@ describe('StorageService', () => {
 
             storageService.add(NEW_ITEM_KEY, newItem);
             storageService.remove(NEW_ITEM_KEY);
-            expect(mockLocalStorage.removeItem).toHaveBeenCalled();
+            expect(mockLocalStorage.removeItem).toHaveBeenCalledWith(STORAGE_PREFIX + NEW_ITEM_KEY);
         });
     });
 
@@ -58,13 +60,11 @@ describe('StorageService', () => {
         });
 
         it('should call getItem', ()=> {
-            storageService.add(NEW_ITEM_KEY, newItem);
             storageService.get(NEW_ITEM_KEY);
-            expect(mockLocalStorage.getItem).toHaveBeenCalled();
+            expect(mockLocalStorage.getItem).toHaveBeenCalledWith(STORAGE_PREFIX +NEW_ITEM_KEY);
         });
 
         it('should return the item of the given key', ()=> {
-            storageService.add(NEW_ITEM_KEY, newItem);
             var itemFromStorage = storageService.get(NEW_ITEM_KEY);
             expect(itemFromStorage).toEqual(newItem);
         })
