@@ -18,7 +18,6 @@ export class WatchListService {
     }
 
     getWatchList() {
-        //TODO: return a list of media items from mediaListCache and watchListEntries
         return this.watchListEntries.map((entry)=>{
             let mediaItem = this.mediaListCache[entry.mediaId];
             mediaItem.addedAt = entry.addedAt;

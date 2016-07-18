@@ -114,10 +114,10 @@ describe('MediaListService', ()=> {
 
     describe('filterMediaList', ()=> {
         let filterBy, dummyMediaList = [{
-                id: 1,
-                isLive: false,
-                type: 'recorded'
-            },
+            id: 1,
+            isLive: false,
+            type: 'recorded'
+        },
             {
                 id: 2,
                 isLive: true,
@@ -189,12 +189,44 @@ describe('MediaListService', ()=> {
 
         it('should result filterMediaList result', ()=> {
             let dummyResult = 'dummy string';
-            spyOn(mediaListService, 'filterMediaList').and.callFake(()=>{
+            spyOn(mediaListService, 'filterMediaList').and.callFake(()=> {
                 return dummyResult;
             });
 
             let getMediaListResult = mediaListService.getMediaList();
             expect(getMediaListResult).toEqual(dummyResult);
         });
-    })
+    });
+
+    describe('getObjectAsArray', ()=> {
+        beforeEach(()=> {
+            mediaListService = new MediaListService(eventEmitterSpy);
+        });
+
+        it('should exist', ()=> {
+            expect(mediaListService.getObjectAsArray).toBeDefined();
+        });
+
+        it('should return object as array', ()=> {
+            let objectToTransform = {1: 'dummy 1', 2: 'dummy 2'};
+            let expectedResult = ['dummy 1', 'dummy 2'];
+            let getObjectAsArrayResult = mediaListService.getObjectAsArray(objectToTransform);
+            expect(getObjectAsArrayResult).toEqual(expectedResult);
+        });
+
+        it('should return empty array on empty object', ()=> {
+            let objectToTransform = {};
+            let expectedResult = [];
+            let getObjectAsArrayResult = mediaListService.getObjectAsArray(objectToTransform);
+            expect(getObjectAsArrayResult).toEqual(expectedResult);
+        });
+    });
+
+    describe('comparator', ()=> {
+        beforeEach(()=> {
+            mediaListService = new MediaListService(eventEmitterSpy);
+        });
+
+        //TODO:
+    });
 });
