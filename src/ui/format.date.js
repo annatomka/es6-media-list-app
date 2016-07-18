@@ -1,11 +1,11 @@
-export function formatDate(dateToFormat){
+export function formatDate(dateToFormat) {
     "use strict";
-    let d = new Date(dateToFormat);
-    let curr_date = d.getDate();
-    let curr_month = d.getMonth() + 1; //Months are zero based
-    let curr_year = d.getFullYear();
-    let hours = d.getHours();
-    let minutes = d.getMinutes();
-    console.log(curr_date + "-" + curr_month + "-" + curr_year);
+    let date = new Date(dateToFormat);
+    let curr_date = date.getDate();
+    let curr_month = date.getMonth() + 1;
+    let curr_year = date.getFullYear();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+
     return `${curr_year}-${curr_month}-${curr_date} ${hours}:${minutes}`;
 }

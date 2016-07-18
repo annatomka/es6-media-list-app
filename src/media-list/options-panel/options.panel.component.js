@@ -1,12 +1,15 @@
 import { EVENT_POLLING_RESULT, EVENT_POLLING_INTERVAL_CHANGED } from '../../app.constants';
 import { OptionsView } from './options.view';
+import {Component} from '../../component/component';
 
-export class OptionsComponent {
+
+export class OptionsComponent extends Component{
     constructor(mediaListComponent, eventEmitter, mediaListService) {
+        super();
         this.mediaListComponent = mediaListComponent;
         this.mediaListService = mediaListService;
         this.eventEmitter = eventEmitter;
-        this.view = new OptionsView(this, '#optionsPanelContainer');
+        this.view = new OptionsView(this);
     }
 
     onSortByPropertySelectionChanged(newValue) {

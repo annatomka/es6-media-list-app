@@ -2,20 +2,15 @@ export class View {
     constructor(component) {
         this.component = component;
         this.$template = null;
-        this.buildView();
     }
 
-    buildView() {
-        let parentDOMId = 'body';
-
-        if(this.component.parent && this.component.parent.view.getDOMId){
-            parentDOMId = this.component.parent.view.getDOMId();
-        }
+    buildView(DOMElement) {
+        let parentDOMElement = DOMElement || jQuery('body');
 
         this.$template = jQuery(`<div></div>`);
 
         this.render();
-        jQuery(parentDOMId).append(this.$template);
+        parentDOMElement.append(this.$template);
     }
 
     template() {

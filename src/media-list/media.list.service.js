@@ -13,11 +13,6 @@ export class MediaListService {
         };
 
         this.filterBy = '*';
-        this.init();
-    }
-
-    init() {
-
     }
 
     updateCache(newMediaList) {
@@ -25,7 +20,6 @@ export class MediaListService {
         newMediaList.forEach((newMediaItem)=> {
             this.mediaListCache[newMediaItem.id] = newMediaItem;
         });
-
 
         this.eventEmitter.emit(EVENT_MEDIA_LIST_UPDATED, this.mediaListCache);
     }
@@ -77,8 +71,8 @@ export class MediaListService {
     }
 
     comparator(a, b) {
-        var nameA = a[this.sortOptions.by]; // ignore upper and lowercase
-        var nameB = b[this.sortOptions.by]; // ignore upper and lowercase
+        var nameA = a[this.sortOptions.by];
+        var nameB = b[this.sortOptions.by];
         if (nameA < nameB) {
             return -1 * this.sortOptions.dir;
         }
@@ -86,7 +80,6 @@ export class MediaListService {
             return 1 * this.sortOptions.dir;
         }
 
-        // names must be equal
         return 0;
     }
 }

@@ -16,7 +16,3 @@ export class App {
         this.homeComponent.activate();
     }
 }
-
-const app = new App(jQuery);
-app.bootstrap();
-

@@ -1,5 +1,10 @@
-define(['./api/api.service', './polling/polling.service', './event-emitter/event.emitter', './home/home.component'], function (_api, _polling, _event, _home) {
+define(['exports', './api/api.service', './polling/polling.service', './event-emitter/event.emitter', './home/home.component'], function (exports, _api, _polling, _event, _home) {
     'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.App = undefined;
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -25,8 +30,8 @@ define(['./api/api.service', './polling/polling.service', './event-emitter/event
         };
     }();
 
-    var App = function () {
-        function App() {
+    var App = exports.App = function () {
+        function App(jQuery) {
             _classCallCheck(this, App);
 
             this.apiService = new _api.ApiService(jQuery);
@@ -45,7 +50,4 @@ define(['./api/api.service', './polling/polling.service', './event-emitter/event
 
         return App;
     }();
-
-    var app = new App();
-    app.bootstrap();
 });
