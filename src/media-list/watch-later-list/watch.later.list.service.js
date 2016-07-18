@@ -6,10 +6,10 @@ export class WatchListService {
         this.eventEmitter = eventEmitter;
         this.storageService = new StorageService(localStorage);
         this.watchListEntries = [];
-        this.init();
+        this.loadWatchListEntriesFromStorage();
     }
 
-    init() {
+    loadWatchListEntriesFromStorage() {
         this.watchListEntries = this.storageService.get(STORAGE_ID_WATCH_LATER);
         if (!this.watchListEntries) {
             this.watchListEntries = [];
@@ -18,36 +18,51 @@ export class WatchListService {
     }
 
     getWatchList() {
-        return this.watchListEntries.map((entry)=>{
-            let mediaItem = this.mediaListCache[entry.mediaId];
-            mediaItem.addedAt = entry.addedAt;
-            return mediaItem;
-        });
+        return this.watchListEntries.map(this.getCachedMediaForEntry);
+    }
+
+    getCachedMediaForEntry(entry) {
+        let mediaItem = this.mediaListCache[entry.mediaId];
+        mediaItem.addedAt = entry.addedAt;
+        return mediaItem;
     }
 
     updateWatchList(mediaListCache) {
+        this.updateMediaListCache(mediaListCache);
+        this.watchListEntries = this.selectCachedMediaItemForWatchList();
+        this.updateWatchListInStorage();
+    }
+
+    updateMediaListCache(mediaListCache) {
         this.mediaListCache = mediaListCache;
+    }
+
+    selectCachedMediaItemForWatchList() {
         let updatedWatchListEntries = [];
         this.watchListEntries.forEach((entry) => {
             let mediaItem = this.mediaListCache[entry.mediaId];
-            if(mediaItem){
+            if (mediaItem) {
                 updatedWatchListEntries.push(entry);
             }
         });
-        this.watchListEntries = updatedWatchListEntries;
+        return updatedWatchListEntries;
+    }
+
+    updateWatchListInStorage() {
         this.storageService.add(STORAGE_ID_WATCH_LATER, this.watchListEntries);
     }
 
     addToWatchList(id) {
-        this.watchListEntries.push({ mediaId: id, addedAt: new Date()});
-        this.storageService.add(STORAGE_ID_WATCH_LATER, this.watchListEntries);
+        console.log('log wathlistentries',this.watchListEntries)
+        this.watchListEntries.push({mediaId: id, addedAt: new Date()});
+        this.updateWatchListInStorage();
     }
 
     removeFromWatchList(id) {
         this.watchListEntries = this.watchListEntries.filter((entry) => {
             return entry.mediaId !== id;
         });
-        this.storageService.add(STORAGE_ID_WATCH_LATER, this.watchListEntries);
+        this.updateWatchListInStorage();
     }
 
     getObjectAsArray(objectToTransform) {
