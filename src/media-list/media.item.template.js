@@ -26,12 +26,12 @@ export function mediaItemTemplate(mediaItem) {
         <div class="clear"></div>
     </div>
     `;
+}
 
-    function liveBadge() {
-        return mediaItem.isLive ? `<span class="badge live">live</span>` : '';
-    }
+export function liveBadge(mediaItem) {
+    return mediaItem.isLive ? `<span class="badge live">live</span>` : '';
+}
 
-    function badge(label) {
-        return `<span class="badge m-r-5">${label}</span>`
-    }
+export function badge(label) {
+    return `<span class="badge m-r-5">${label}</span>`
 }
