@@ -1,13 +1,15 @@
 export class Component {
-    constructor(){
-       this.element = jQuery('body');
+    constructor() {
+        this.element = jQuery('body');
     }
 
     activate() {
-        this.view.buildView(this.element);
+        if (this.view) {
+            this.view.buildView(this.element);
+        }
     }
 
-    setElement(element){
+    setElement(element) {
         this.element = element;
     }
 }

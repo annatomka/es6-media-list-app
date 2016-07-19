@@ -165,7 +165,11 @@ describe('WatchListService', ()=> {
         });
 
         it('should exist', ()=>{
-           watchListService.removeFromWatchList();
+            expect(watchListService.removeFromWatchList).toBeDefined();
+        });
+
+        it('should remove given id from storage', ()=>{
+            //:TODO
         });
     });
 });
