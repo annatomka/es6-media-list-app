@@ -16,7 +16,10 @@ describe('HomeComponent', ()=> {
         });
 
         it('should call super activate with #home element', ()=>{
-            //TODO: how to test super call??
+            let homeComponentSuper = Object.getPrototypeOf(HomeComponent.prototype);
+            spyOn(homeComponentSuper, 'activate');
+            homeComponent.activate();
+            expect(homeComponentSuper.activate).toHaveBeenCalledWith($('#home'));
         });
 
         it('should call allMediaListComponent activate', ()=>{
