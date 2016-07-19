@@ -2,9 +2,9 @@ import { StorageService } from '../../storage/storage.service';
 import { STORAGE_ID_WATCH_LATER, EVENT_MEDIA_LIST_UPDATED } from '../../app.constants';
 
 export class WatchListService {
-    constructor(eventEmitter) {
+    constructor(eventEmitter, storageService) {
         this.eventEmitter = eventEmitter;
-        this.storageService = new StorageService(localStorage);
+        this.storageService = storageService;
         this.watchListEntries = [];
         this.loadWatchListEntriesFromStorage();
     }
@@ -18,7 +18,7 @@ export class WatchListService {
     }
 
     getWatchList() {
-        return this.watchListEntries.map(this.getCachedMediaForEntry);
+        return this.watchListEntries.map((entry)=>this.getCachedMediaForEntry(entry));
     }
 
     getCachedMediaForEntry(entry) {

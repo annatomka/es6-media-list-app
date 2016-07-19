@@ -3,12 +3,13 @@ import { AllMediaListComponent } from '../media-list/all-media-list/all.media.li
 import { WatchLaterListComponent } from '../media-list/watch-later-list/watch.later.list.component';
 import { WatchListService } from '../media-list/watch-later-list/watch.later.list.service';
 import { MediaListService } from '../media-list/media.list.service';
+import { StorageService } from '../storage/storage.service';
 import { HomeView } from './home.view';
 
 export class HomeComponent extends Component{
     constructor(eventEmitter) {
         super();
-        this.watchListService = new WatchListService(eventEmitter);
+        this.watchListService = new WatchListService(eventEmitter, new StorageService(localStorage));
         this.mediaListService = new MediaListService(eventEmitter);
         this.view = new HomeView(this);
         this.allMediaListComponent = new AllMediaListComponent(eventEmitter, this.mediaListService);
