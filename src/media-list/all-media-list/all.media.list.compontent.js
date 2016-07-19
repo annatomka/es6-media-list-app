@@ -17,9 +17,7 @@ export class AllMediaListComponent extends Component{
 
         this.optionsComponent.activate();
         super.activate();
-        this.eventEmitter.on(EVENT_POLLING_RESULT, result => {
-            this.onPollingResult(result);
-        });
+        this.eventEmitter.on(EVENT_POLLING_RESULT, (result)=>this.onPollingResult(result));
     }
 
     onPollingResult(result) {

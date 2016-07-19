@@ -12,6 +12,7 @@ export class App {
     }
 
     bootstrap() {
+        this.pollingService.init();
         this.pollingService.start();
         this.homeComponent.activate();
     }

@@ -9,10 +9,24 @@ describe('PollingService', () => {
         apiServiceSpy = jasmine.createSpyObj("ApiService", ['getAllMediaItems']);
     });
 
-    describe('constructor', ()=> {
+    describe('init', ()=> {
         it('should register restartWithNewIntervalSeconds on EVENT_POLLING_INTERVAL_CHANGED', () => {
+
+            let getAllMediaItemsDeferred;
+
+            getAllMediaItemsDeferred = $.Deferred();
+            apiServiceSpy.getAllMediaItems.and.returnValue(getAllMediaItemsDeferred.promise());
             pollingService = new PollingService(eventEmitterSpy, apiServiceSpy);
-            expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_POLLING_INTERVAL_CHANGED, pollingService.restartWithNewIntervalSeconds);
+
+            eventEmitterSpy.on.and.callFake((eventKey, callbackFn)=> {
+                callbackFn();
+            });
+            spyOn(pollingService, 'restartWithNewIntervalSeconds');
+
+            pollingService.init();
+
+            expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_POLLING_INTERVAL_CHANGED, jasmine.any(Function));
+            expect(pollingService.restartWithNewIntervalSeconds).toHaveBeenCalled();
         });
     });
 
@@ -90,7 +104,7 @@ describe('PollingService', () => {
             pollingService.poll();
             getAllMediaItemsDeferred.resolve(getAllMediaItemsResult);
             jasmine.clock().tick(0);
-            expect(eventEmitterSpy.emit).toHaveBeenCalledWith(EVENT_POLLING_RESULT,getAllMediaItemsResult);
+            expect(eventEmitterSpy.emit).toHaveBeenCalledWith(EVENT_POLLING_RESULT, getAllMediaItemsResult);
         });
     });
 

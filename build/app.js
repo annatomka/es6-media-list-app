@@ -43,6 +43,7 @@ define(['exports', './api/api.service', './polling/polling.service', './event-em
         _createClass(App, [{
             key: 'bootstrap',
             value: function bootstrap() {
+                this.pollingService.init();
                 this.pollingService.start();
                 this.homeComponent.activate();
             }

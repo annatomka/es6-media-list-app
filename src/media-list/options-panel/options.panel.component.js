@@ -13,25 +13,21 @@ export class OptionsComponent extends Component{
     }
 
     onSortByPropertySelectionChanged(newValue) {
-        console.log("sort by property changed with value: ", newValue);
         this.mediaListService.updateSortByProperty(newValue);
         this.mediaListComponent.updateMediaList();
     }
 
     onSortByDirSelectionChanged(newValue) {
-        console.log("sort by dir changed with value: ", newValue);
         this.mediaListService.updateSortByDir(newValue);
         this.mediaListComponent.updateMediaList(this.mediaListService.mediaList);
     }
 
     onFilterSelectionChanged(newValue){
-        console.log("filter changed with value: ", newValue);
         const filteredMediaList = this.mediaListService.updateFilterBy(newValue);
         this.mediaListComponent.updateMediaList(filteredMediaList);
     }
 
     onPollingInputChanged(newValue) {
-        console.log("polling interval new value: ", newValue);
         this.eventEmitter.emit(EVENT_POLLING_INTERVAL_CHANGED, newValue);
     }
 }

@@ -22,12 +22,9 @@ describe('App', () => {
     });
 
     describe('bootstrap', ()=> {
-        let pollingStartSpy = jasmine.createSpy('pollingService.start');
         let homeActivateSpy = jasmine.createSpy('homeComponent.activate');
 
-        app.pollingService = {
-            start: pollingStartSpy
-        };
+        app.pollingService = jasmine.createSpyObj('PollingService Spy',['start','init']);
 
         app.homeComponent = {
             activate: homeActivateSpy
@@ -35,8 +32,13 @@ describe('App', () => {
 
         app.bootstrap();
 
+        it('should init polling service', ()=>{
+            "use strict";
+           expect(app.pollingService.init).toHaveBeenCalled();
+        });
+
         it('should start polling service', () => {
-            expect(pollingStartSpy).toHaveBeenCalled();
+            expect(app.pollingService.start).toHaveBeenCalled();
         });
 
         it('should activate home component', () => {
