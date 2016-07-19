@@ -18,9 +18,11 @@ export class View {
     }
 
     render() {
-        this.$template.html(this.template());
-        this.registerClickHandlers();
-        this.registerChangeHandlers();
+        if(this.$template) {
+            this.$template.html(this.template());
+            this.registerClickHandlers();
+            this.registerChangeHandlers();
+        }
     }
 
     registerClickHandlers() {

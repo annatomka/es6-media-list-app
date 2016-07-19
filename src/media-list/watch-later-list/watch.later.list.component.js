@@ -25,14 +25,10 @@ export class WatchLaterListComponent extends Component{
         this.eventEmitter.on(EVENT_WATCHLIST_REMOVE, item => {
             this.removeItemFromWatchList(item);
         });
-
-        //this.watchListItems = this.watchListService.getWatchList();
     }
 
     onMediaListUpdated(mediaListCache) {
-        console.log('result arrived in watch later list component: ');
         this.watchListService.updateWatchList(mediaListCache);
-        //TODO: syncronize storage, if something is delete we must delete from storage too
         this.watchListItems = this.watchListService.getWatchList();
         this.view.render();
     }
@@ -40,7 +36,6 @@ export class WatchLaterListComponent extends Component{
     addItemToWatchList(id) {
         this.watchListService.addToWatchList(id);
         this.watchListItems = this.watchListService.getWatchList();
-        console.log(this.watchListItems);
         this.view.render();
     }
 
