@@ -1,4 +1,4 @@
-import { POLLING_INTERVAL_MS, EVENT_POLLING_RESULT, EVENT_POLLING_INTERVAL_CHANGED} from '../app.constants';
+import { POLLING_INTERVAL_MS, EVENT_POLLING_RESULT, EVENT_POLLING_INTERVAL_CHANGED } from '../app.constants';
 
 export class PollingService {
     constructor(eventEmitter, ApiService) {
@@ -8,8 +8,9 @@ export class PollingService {
         this.pollingIntervalId = null;
     }
 
-    init(){
-        this.eventEmitter.on(EVENT_POLLING_INTERVAL_CHANGED, (newIntervalMs)=>this.restartWithNewIntervalSeconds(newIntervalMs));
+    init() {
+        this.eventEmitter.on(EVENT_POLLING_INTERVAL_CHANGED,
+            (newIntervalMs) => this.restartWithNewIntervalSeconds(newIntervalMs));
     }
 
     setPollingIntervalMilliseconds(intervalMs) {
@@ -31,6 +32,7 @@ export class PollingService {
 
     restartWithNewIntervalSeconds(intervalInSeconds) {
         this.setPollingIntervalMilliseconds(intervalInSeconds * 1000);
+
         this.restart();
     }
 

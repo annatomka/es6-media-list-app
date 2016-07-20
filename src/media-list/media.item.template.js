@@ -33,5 +33,5 @@ export function liveBadge(mediaItem) {
 }
 
 export function badge(label) {
-    return `<span class="badge m-r-5">${label}</span>`
+    return `<span class="badge m-r-5">${label}</span>`;
 }
