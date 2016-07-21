@@ -18,6 +18,10 @@ describe('OptionsComponent', ()=>{
             optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy)
         });
 
+        it('should exist', () => {
+            expect(optionsComponent.onSortByPropertySelectionChanged).toBeDefined();
+        });
+
         it('should update sort property with given parameter and update media list', ()=>{
             let dummySortProperty = "dummy";
             optionsComponent.onSortByPropertySelectionChanged(dummySortProperty);
@@ -28,6 +32,11 @@ describe('OptionsComponent', ()=>{
     });
 
     describe('onSortByPropertySelectionChanged', ()=>{
+        it('should exist', () => {
+            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            expect(optionsComponent.onSortByPropertySelectionChanged).toBeDefined();
+        });
+
         it('should update sort property with given parameter and update media list', ()=>{
             let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
             let dummySortProperty = "dummy";
@@ -38,6 +47,11 @@ describe('OptionsComponent', ()=>{
     });
 
     describe('onSortByDirSelectionChanged', ()=>{
+        it('should exist', () => {
+            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            expect(optionsComponent.onSortByDirSelectionChanged).toBeDefined();
+        });
+
         it('should update sort by direction with given parameter and update media list', ()=>{
             let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
             let dummySortDir = -1;
@@ -48,6 +62,10 @@ describe('OptionsComponent', ()=>{
     });
 
     describe('onFilterSelectionChanged', ()=>{
+        it('should exist', () => {
+            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            expect(optionsComponent.onFilterSelectionChanged).toBeDefined();
+        });
 
         it('should update filter by', ()=>{
             let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
@@ -61,6 +79,11 @@ describe('OptionsComponent', ()=>{
     });
 
     describe('onPollingInputChanged', ()=> {
+        it('should exist', () => {
+            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            expect(optionsComponent.onPollingInputChanged).toBeDefined();
+        });
+
         it('should emit EVENT_POLLING_INTERVAL_CHANGED with given parameter', ()=>{
             let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
             let dummyValue = "dummy";

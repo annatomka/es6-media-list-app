@@ -10,7 +10,11 @@ describe('EventEmitter', () => {
         eventSubscriberSpy = jasmine.createSpyObj("eventSubscriber", ['eventCallback'])
     });
 
-    describe('on Event', ()=> {
+    describe('on Event', () => {
+        it('should exist', () => {
+            expect(eventEmitter.on).toBeDefined();
+        });
+
         it('should add event subscriber', () => {
             eventEmitter.on(EVENT_KEY, eventSubscriberSpy.eventCallback);
             let subscribersOnEvent = eventEmitter.onSubscribers[EVENT_KEY];
@@ -20,11 +24,15 @@ describe('EventEmitter', () => {
     });
 
     describe('on Emit', ()=> {
+        it('should exist', () => {
+            expect(eventEmitter.emit).toBeDefined();
+        });
+
         it('should call subscriber on emit event key', () => {
             eventEmitter.on(EVENT_KEY, eventSubscriberSpy.eventCallback);
             let eventParams = "params";
             eventEmitter.emit(EVENT_KEY, eventParams);
             expect(eventSubscriberSpy.eventCallback).toHaveBeenCalledWith(eventParams);
-        })
+        });
     });
 });

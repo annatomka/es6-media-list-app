@@ -7,16 +7,14 @@ describe('WatchListService', ()=> {
     beforeEach(()=> {
         eventEmitterSpy = jasmine.createSpyObj("EventEmitter", ['on', 'emit']);
         apiServiceSpy = jasmine.createSpyObj("ApiService", ['getAllMediaItems']);
-        storageServiceSpy = jasmine.createSpyObj("StorageService", ['add','get', 'remove']);
+        storageServiceSpy = jasmine.createSpyObj("StorageService", ['add', 'get', 'remove']);
     });
 
     describe('loadWatchListEntriesFromStorage', ()=> {
-        "use strict";
-
         beforeEach(()=> {
             watchListService = new WatchListService(eventEmitterSpy, storageServiceSpy);
 
-            storageServiceSpy.add.and.callFake((item)=>{
+            storageServiceSpy.add.and.callFake((item)=> {
                 return item;
             });
         });
@@ -45,11 +43,9 @@ describe('WatchListService', ()=> {
     });
 
     describe('getWatchList', ()=> {
-        "use strict";
-
         beforeEach(()=> {
             watchListService = new WatchListService(eventEmitterSpy, storageServiceSpy);
-            storageServiceSpy.add.and.callFake((item)=>{
+            storageServiceSpy.add.and.callFake((item)=> {
                 return item;
             });
         });
@@ -68,13 +64,17 @@ describe('WatchListService', ()=> {
     });
 
     describe('getCachedMediaForEntry', ()=> {
-        "use strict";
+
 
         beforeEach(()=> {
             watchListService = new WatchListService(eventEmitterSpy, storageServiceSpy);
-            storageServiceSpy.add.and.callFake((item)=>{
+            storageServiceSpy.add.and.callFake((item)=> {
                 return item;
             });
+        });
+
+        it('should exist', () => {
+            expect(watchListService.getCachedMediaForEntry).toBeDefined();
         });
 
         it('should return cached media for entry', ()=> {
@@ -90,14 +90,18 @@ describe('WatchListService', ()=> {
     });
 
     describe('updateWatchList', ()=> {
-        "use strict";
+
         let dummyMediaCache;
         beforeEach(()=> {
             watchListService = new WatchListService(eventEmitterSpy, storageServiceSpy);
-            storageServiceSpy.add.and.callFake((item)=>{
+            storageServiceSpy.add.and.callFake((item)=> {
                 return item;
             });
             dummyMediaCache = {id: 1, title: 'dummy'};
+        });
+
+        it('should exist', () => {
+            expect(watchListService.updateWatchList).toBeDefined();
         });
 
         it('should update media list cache', ()=> {
@@ -127,10 +131,10 @@ describe('WatchListService', ()=> {
     });
 
     describe('addToWatchList', ()=> {
-        "use strict";
+
         beforeEach(()=> {
             watchListService = new WatchListService(eventEmitterSpy, storageServiceSpy);
-            storageServiceSpy.add.and.callFake((item)=>{
+            storageServiceSpy.add.and.callFake((item)=> {
                 return item;
             });
         });
@@ -143,7 +147,7 @@ describe('WatchListService', ()=> {
             let dummyId = 12;
             let oldDate = Date;
 
-            spyOn(window, 'Date').and.callFake(function() {
+            spyOn(window, 'Date').and.callFake(function () {
                 return new oldDate;
             });
 
@@ -156,19 +160,19 @@ describe('WatchListService', ()=> {
     });
 
     describe('removeFromWatchList', ()=> {
-        "use strict";
+
         beforeEach(()=> {
             watchListService = new WatchListService(eventEmitterSpy, storageServiceSpy);
-            storageServiceSpy.add.and.callFake((item)=>{
+            storageServiceSpy.add.and.callFake((item)=> {
                 return item;
             });
         });
 
-        it('should exist', ()=>{
+        it('should exist', ()=> {
             expect(watchListService.removeFromWatchList).toBeDefined();
         });
 
-        it('should remove given id from storage', ()=>{
+        it('should remove given id from storage', ()=> {
             //:TODO
         });
     });

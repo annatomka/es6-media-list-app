@@ -17,6 +17,10 @@ describe('AllMediaListComponent', ()=>{
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
         });
 
+        it('should exist', () => {
+            expect(allMediaListComponent.activate).toBeDefined();
+        });
+
         it('should call optionsComponent activate', ()=>{
             spyOn(allMediaListComponent.optionsComponent, 'activate');
             allMediaListComponent.activate();
@@ -51,6 +55,10 @@ describe('AllMediaListComponent', ()=>{
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
         });
 
+        it('should exist', () => {
+            expect(allMediaListComponent.onPollingResult).toBeDefined();
+        });
+
         it('should update media cache', ()=>{
             let dummyPollingResult = [{id: 1, title: "dummy"}];
             spyOn(allMediaListComponent,'updateMediaList');
@@ -65,6 +73,10 @@ describe('AllMediaListComponent', ()=>{
 
         beforeEach(()=>{
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
+        });
+
+        it('should exist', () => {
+            expect(allMediaListComponent.updateMediaList).toBeDefined();
         });
 
         it('should update media list', ()=>{
@@ -89,6 +101,10 @@ describe('AllMediaListComponent', ()=>{
 
         beforeEach(()=>{
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
+        });
+
+        it('should exist', () => {
+            expect(allMediaListComponent.addToWatchLaterList).toBeDefined();
         });
 
         it('should emit EVENT_WATCHLIST_ADD with given id', ()=>{

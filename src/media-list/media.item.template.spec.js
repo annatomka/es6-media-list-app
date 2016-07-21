@@ -23,4 +23,7 @@ describe('mediaItemTemplate', ()=> {
         });
     });
 
+    describe('badge', () => {
+       //TODO:
+    });
 });

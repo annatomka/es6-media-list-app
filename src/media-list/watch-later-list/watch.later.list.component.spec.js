@@ -21,11 +21,12 @@ describe('WatchLaterListComponent', ()=> {
             });
         });
 
+        it('should exist', () => {
+            expect(watchListComponent.activate).toBeDefined();
+        });
+
         it('should register event listeners', ()=> {
-
-
             watchListComponent.activate();
-
             expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_MEDIA_LIST_UPDATED, jasmine.any(Function));
             expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_WATCHLIST_ADD, jasmine.any(Function));
             expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_WATCHLIST_REMOVE, jasmine.any(Function));
@@ -40,14 +41,18 @@ describe('WatchLaterListComponent', ()=> {
             expect(watchListComponent.onMediaListUpdated).toHaveBeenCalled();
             expect(watchListComponent.addItemToWatchList).toHaveBeenCalled();
             expect(watchListComponent.removeItemFromWatchList).toHaveBeenCalled();
-        })
+        });
     });
 
-    describe('onMediaListUpdated', ()=> {
+    describe('onMediaListUpdated', () => {
         let watchListComponent;
 
         beforeEach(()=> {
             watchListComponent = new WatchLaterListComponent(eventEmitterSpy, watchListServiceSpy);
+        });
+
+        it('should exist', () => {
+            expect(watchListComponent.onMediaListUpdated).toBeDefined();
         });
 
         it('should update watch list', ()=> {
@@ -69,6 +74,10 @@ describe('WatchLaterListComponent', ()=> {
 
         beforeEach(()=> {
             watchListComponent = new WatchLaterListComponent(eventEmitterSpy, watchListServiceSpy);
+        });
+
+        it('should exist', () => {
+            expect(watchListComponent.addItemToWatchList).toBeDefined();
         });
 
         it('should add item to watchlist', ()=> {
@@ -96,8 +105,13 @@ describe('WatchLaterListComponent', ()=> {
             watchListComponent = new WatchLaterListComponent(eventEmitterSpy, watchListServiceSpy);
         });
 
-        it('should remove item from watchlist', ()=> {
 
+        it('should exist', () => {
+            expect(watchListComponent.removeItemFromWatchList).toBeDefined();
+        });
+
+        it('should remove item from watchlist', () => {
+            //TODO:
         });
 
         it('should render view', ()=> {

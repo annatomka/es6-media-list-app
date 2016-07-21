@@ -19,6 +19,10 @@ describe('MediaListService', ()=> {
             dummyMediaList = [dummyItem];
         });
 
+        it('should exist', () => {
+            expect(mediaListService.updateCache).toBeDefined();
+        });
+
         it('should update mediaList with given list', ()=> {
             mediaListService.updateCache(dummyMediaList);
             expect(mediaListService.mediaList).toEqual(dummyMediaList);
@@ -41,6 +45,10 @@ describe('MediaListService', ()=> {
             mediaListService = new MediaListService(eventEmitterSpy);
         });
 
+        it('should exist', () => {
+            expect(mediaListService.updateSortByProperty).toBeDefined();
+        });
+
         it('should update sort by property with the given value', ()=> {
             let sortBy = 'id';
             expect(mediaListService.sortOptions.by).not.toEqual(sortBy);
@@ -61,6 +69,10 @@ describe('MediaListService', ()=> {
             mediaListService = new MediaListService(eventEmitterSpy);
         });
 
+        it('should exist', () => {
+            expect(mediaListService.updateSortByDir).toBeDefined();
+        });
+
         it('should update sort dir property with the given value', ()=> {
             let sortDir = -1;
             expect(mediaListService.sortOptions.dir).not.toEqual(sortDir);
@@ -79,6 +91,10 @@ describe('MediaListService', ()=> {
     describe('updateFilterBy', ()=> {
         beforeEach(()=> {
             mediaListService = new MediaListService(eventEmitterSpy);
+        });
+
+        it('should exist', () => {
+            expect(mediaListService.updateFilterBy).toBeDefined();
         });
 
         it('should update filter by property with the given value', ()=> {

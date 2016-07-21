@@ -9,8 +9,4 @@ export class HomeView extends View {
             </div>
         `;
     }
-
-    getId() {
-        return 'home';
-    }
 }

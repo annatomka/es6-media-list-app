@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 describe('ApiService', () => {
     describe('getAllMediaItems', ()=> {
         let apiService, mockMediaItems, jQuery;
+
         beforeEach(()=> {
             mockMediaItems = [{
                 title: "mock media item"
@@ -28,5 +29,5 @@ describe('ApiService', () => {
             expect(result).toEqual(mockMediaItems);
         });
 
-    })
+    });
 });
