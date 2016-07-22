@@ -110,10 +110,6 @@ describe('WatchLaterListComponent', ()=> {
             expect(watchListComponent.removeItemFromWatchList).toBeDefined();
         });
 
-        it('should remove item from watchlist', () => {
-            //TODO:
-        });
-
         it('should render view', ()=> {
             var dummyCache = {1: 'dummy'};
             spyOn(watchListComponent.view, 'render');
