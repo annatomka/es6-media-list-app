@@ -106,11 +106,8 @@ describe('View', () => {
             view.component = jasmine.createSpyObj('view component', ['dummyClick']);
             view.$template = $dummyElement;
 
-
-
             expect(() => {
                 view.render();
-                //view.$template.find('[data-click="badDummyClick"]').trigger('click');
             }).toThrow(new Error(ERROR_CLICK_ON_UNDEFINED_FUNCTION));
         });
     });
