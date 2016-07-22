@@ -1,1 +1,1 @@
-require(["build/app.bootstrap"]);
+require(["build/app/app.bootstrap"]);
