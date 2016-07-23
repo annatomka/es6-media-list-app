@@ -12,14 +12,20 @@ export function watchMediaItemTemplate(mediaItem) {
                 <div class="media-detail">
                     ${location(mediaItem)}
                     <span class="separator">•</span>
-                    <span class="viewers"> <i class="zmdi zmdi-eye"></i><strong>${mediaItem.viewers}</strong> </span>
+                    <span class="viewers">
+                        &nbsp;<i class="zmdi zmdi-eye"></i>
+                        <strong>${mediaItem.viewers}</strong>&nbsp;
+                    </span>
                     <span class="separator">•</span>
                     <span>added at <span>${formatDate(mediaItem.addedAt)}</span></span>
                     <span class="separator">•</span>
-                    <span><small>#${mediaItem.id}</small></span>
+                    <span>
+                        <small>#${mediaItem.id}</small>
+                    </span>
                 </div>
             </div>
-            <button class="small danger pull-right m-t-5 m-b-10" data-click="removeItemFromWatchList" data-click-param="${mediaItem.id}">
+            <button class="small danger pull-right m-t-5 m-b-10"
+                data-click="removeItemFromWatchList" data-click-param="${mediaItem.id}">
                 <i class="zmdi zmdi-minus"></i> Remove
             </button>
             <div class="clear"></div>

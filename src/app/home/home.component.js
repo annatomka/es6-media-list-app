@@ -6,18 +6,20 @@ import { MediaListService } from '../media-list/media.list.service';
 import { StorageService } from '../../framework/storage/storage.service';
 import { HomeView } from './home.view';
 
-export class HomeComponent extends Component{
+export class HomeComponent extends Component {
     constructor(eventEmitter) {
         super();
-        this.watchListService = new WatchListService(eventEmitter, new StorageService(localStorage));
+        this.watchListService = new WatchListService(
+            eventEmitter, new StorageService(localStorage));
         this.mediaListService = new MediaListService(eventEmitter);
         this.view = new HomeView(this);
         this.allMediaListComponent = new AllMediaListComponent(eventEmitter, this.mediaListService);
-        this.watchLaterListComponent = new WatchLaterListComponent(eventEmitter, this.watchListService);
+        this.watchLaterListComponent = new WatchLaterListComponent(
+            eventEmitter, this.watchListService);
     }
 
     activate() {
-        super.activate($('#home'));
+        super.activate(jQuery('#home'));
         this.allMediaListComponent.activate();
         this.watchLaterListComponent.activate();
     }

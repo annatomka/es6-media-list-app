@@ -4,7 +4,7 @@ describe('HomeComponent', () => {
     let eventEmitterSpy;
 
     beforeEach(() => {
-        eventEmitterSpy = jasmine.createSpyObj("EventEmitter", ['on', 'emit']);
+        eventEmitterSpy = jasmine.createSpyObj('EventEmitter', ['on', 'emit']);
     });
 
     describe('activate', () => {
@@ -19,7 +19,7 @@ describe('HomeComponent', () => {
         });
 
         it('should call super activate with #home element', () => {
-            let homeComponentSuper = Object.getPrototypeOf(HomeComponent.prototype);
+            const homeComponentSuper = Object.getPrototypeOf(HomeComponent.prototype);
             spyOn(homeComponentSuper, 'activate');
             homeComponent.activate();
             expect(homeComponentSuper.activate).toHaveBeenCalledWith(jQuery('#home'));

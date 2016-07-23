@@ -1,4 +1,4 @@
-import {View} from '../../../framework/ui/view';
+import { View } from '../../../framework/ui/view';
 
 export class OptionsView extends View {
     template() {
@@ -29,7 +29,8 @@ export class OptionsView extends View {
                     <div class="pull-right polling-interval">
                         <i class="zmdi zmdi-time-restore"></i>
                         <span>5s</span>
-                        <input type="range" min="5" max="100" step="1" data-change="onPollingInputChanged"/>
+                        <input type="range" value="10" min="5" max="100" step="1"
+                            data-change="onPollingInputChanged"/>
                         <span>100s</span>
                     </div>
                     <div class="clear"></div>

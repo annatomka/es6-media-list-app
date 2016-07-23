@@ -18,6 +18,7 @@ export class StorageService {
         if (itemInStorage) {
             return this.deserialize(itemInStorage);
         }
+        return '';
     }
 
     serialize(item) {

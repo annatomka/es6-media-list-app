@@ -1,76 +1,86 @@
 import { OptionsComponent } from './options.panel.component';
 import { EVENT_POLLING_INTERVAL_CHANGED } from '../../app.constants';
 
-describe('OptionsComponent', ()=>{
-    "use strict";
-    let eventEmitterSpy, mediaListServiceSpy, mediaListComponentSpy;
+describe('OptionsComponent', () => {
+    let eventEmitterSpy;
+    let mediaListServiceSpy;
+    let mediaListComponentSpy;
 
-    beforeEach(()=> {
-        eventEmitterSpy = jasmine.createSpyObj("EventEmitter", ['on', 'emit']);
-        mediaListServiceSpy = jasmine.createSpyObj("MediaListService", ['updateCache', 'getMediaList','updateSortByProperty', 'updateSortByDir','updateFilterBy']);
-        mediaListComponentSpy = jasmine.createSpyObj("MediaListComponent", ['updateMediaList']);
+    beforeEach(() => {
+        eventEmitterSpy = jasmine.createSpyObj('EventEmitter', ['on', 'emit']);
+        mediaListServiceSpy = jasmine.createSpyObj('MediaListService', ['updateCache',
+            'updateSortByProperty', 'getMediaList', 'updateSortByDir', 'updateFilterBy']);
+        mediaListComponentSpy = jasmine.createSpyObj('MediaListComponent', ['updateMediaList']);
     });
 
-    describe('onSortByPropertySelectionChanged', ()=>{
+    describe('onSortByPropertySelectionChanged', () => {
         let optionsComponent;
 
-        beforeEach(()=>{
-            optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy)
+        beforeEach(() => {
+            optionsComponent = new OptionsComponent(mediaListComponentSpy,
+                eventEmitterSpy, mediaListServiceSpy);
         });
 
         it('should exist', () => {
             expect(optionsComponent.onSortByPropertySelectionChanged).toBeDefined();
         });
 
-        it('should update sort property with given parameter and update media list', ()=>{
-            let dummySortProperty = "dummy";
+        it('should update sort property with given parameter and update media list', () => {
+            const dummySortProperty = 'dummy';
             optionsComponent.onSortByPropertySelectionChanged(dummySortProperty);
-            expect(mediaListServiceSpy.updateSortByProperty).toHaveBeenCalledWith(dummySortProperty);
+            expect(mediaListServiceSpy.updateSortByProperty)
+                .toHaveBeenCalledWith(dummySortProperty);
             expect(mediaListComponentSpy.updateMediaList).toHaveBeenCalled();
         });
-
     });
 
-    describe('onSortByPropertySelectionChanged', ()=>{
+    describe('onSortByPropertySelectionChanged', () => {
         it('should exist', () => {
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
             expect(optionsComponent.onSortByPropertySelectionChanged).toBeDefined();
         });
 
-        it('should update sort property with given parameter and update media list', ()=>{
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
-            let dummySortProperty = "dummy";
+        it('should update sort property with given parameter and update media list', () => {
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const dummySortProperty = 'dummy';
             optionsComponent.onSortByPropertySelectionChanged(dummySortProperty);
-            expect(mediaListServiceSpy.updateSortByProperty).toHaveBeenCalledWith(dummySortProperty);
+            expect(mediaListServiceSpy.updateSortByProperty)
+                .toHaveBeenCalledWith(dummySortProperty);
             expect(mediaListComponentSpy.updateMediaList).toHaveBeenCalled();
         });
     });
 
-    describe('onSortByDirSelectionChanged', ()=>{
+    describe('onSortByDirSelectionChanged', () => {
         it('should exist', () => {
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
             expect(optionsComponent.onSortByDirSelectionChanged).toBeDefined();
         });
 
-        it('should update sort by direction with given parameter and update media list', ()=>{
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
-            let dummySortDir = -1;
+        it('should update sort by direction with given parameter and update media list', () => {
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const dummySortDir = -1;
             optionsComponent.onSortByDirSelectionChanged(dummySortDir);
             expect(mediaListServiceSpy.updateSortByDir).toHaveBeenCalledWith(dummySortDir);
             expect(mediaListComponentSpy.updateMediaList).toHaveBeenCalled();
         });
     });
 
-    describe('onFilterSelectionChanged', ()=>{
+    describe('onFilterSelectionChanged', () => {
         it('should exist', () => {
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
             expect(optionsComponent.onFilterSelectionChanged).toBeDefined();
         });
 
-        it('should update filter by', ()=>{
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
-            let dummyFilter = "dummy";
-            let dummyResult = ["dummy result"];
+        it('should update filter by', () => {
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const dummyFilter = 'dummy';
+            const dummyResult = ['dummy result'];
             mediaListServiceSpy.updateFilterBy.and.returnValue(dummyResult);
             optionsComponent.onFilterSelectionChanged(dummyFilter);
             expect(mediaListServiceSpy.updateFilterBy).toHaveBeenCalledWith(dummyFilter);
@@ -78,17 +88,20 @@ describe('OptionsComponent', ()=>{
         });
     });
 
-    describe('onPollingInputChanged', ()=> {
+    describe('onPollingInputChanged', () => {
         it('should exist', () => {
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
             expect(optionsComponent.onPollingInputChanged).toBeDefined();
         });
 
-        it('should emit EVENT_POLLING_INTERVAL_CHANGED with given parameter', ()=>{
-            let optionsComponent = new OptionsComponent(mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
-            let dummyValue = "dummy";
+        it('should emit EVENT_POLLING_INTERVAL_CHANGED with given parameter', () => {
+            const optionsComponent = new OptionsComponent(
+                mediaListComponentSpy, eventEmitterSpy, mediaListServiceSpy);
+            const dummyValue = 'dummy';
             optionsComponent.onPollingInputChanged(dummyValue);
-            expect(eventEmitterSpy.emit).toHaveBeenCalledWith(EVENT_POLLING_INTERVAL_CHANGED, dummyValue);
+            expect(eventEmitterSpy.emit)
+                .toHaveBeenCalledWith(EVENT_POLLING_INTERVAL_CHANGED, dummyValue);
         });
     });
 });

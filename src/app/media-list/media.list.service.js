@@ -1,5 +1,5 @@
 import { StorageService } from '../../framework/storage/storage.service';
-import { STORAGE_ID_WATCH_LATER, EVENT_MEDIA_LIST_UPDATED, EVENT_POLLING_RESULT } from '../app.constants';
+import { EVENT_MEDIA_LIST_UPDATED } from '../app.constants';
 
 export class MediaListService {
     constructor(eventEmitter) {
@@ -17,7 +17,7 @@ export class MediaListService {
 
     updateCache(newMediaList) {
         this.mediaList = newMediaList;
-        newMediaList.forEach((newMediaItem)=> {
+        newMediaList.forEach((newMediaItem) => {
             this.mediaListCache[newMediaItem.id] = newMediaItem;
         });
 
@@ -25,13 +25,11 @@ export class MediaListService {
     }
 
     updateSortByProperty(sortByProperty) {
-        console.log("sort by ", sortByProperty);
         this.sortOptions.by = sortByProperty;
         this.sortMediaList();
     }
 
     updateSortByDir(sortByDir) {
-        console.log("sort by dir", sortByDir);
         this.sortOptions.dir = sortByDir;
         this.sortMediaList();
     }
@@ -43,11 +41,10 @@ export class MediaListService {
 
     filterMediaList() {
         if (this.filterBy !== '*') {
-            return this.mediaList.filter((mediaItem) => {
-                return (this.filterBy === 'live' && mediaItem.isLive)
+            return this.mediaList.filter((mediaItem) =>
+                    (this.filterBy === 'live' && mediaItem.isLive)
                     || (this.filterBy === 'offline' && !mediaItem.isLive)
-                    || (this.filterBy === 'video' && mediaItem.type === 'recorded');
-            });
+                    || (this.filterBy === 'video' && mediaItem.type === 'recorded'));
         }
         return this.mediaList;
     }
@@ -56,18 +53,19 @@ export class MediaListService {
         this.sortMediaList();
         return this.filterMediaList();
     }
+
     sortMediaList() {
         this.mediaList.sort((a, b) => this.comparator(a, b));
     }
 
     comparator(firstMediaItem, secondMediaItem) {
-        var firstMediaItemSortProperty = firstMediaItem[this.sortOptions.by];
-        var secondMediaItemSortProperty = secondMediaItem[this.sortOptions.by];
+        const firstMediaItemSortProperty = firstMediaItem[this.sortOptions.by];
+        const secondMediaItemSortProperty = secondMediaItem[this.sortOptions.by];
         if (firstMediaItemSortProperty < secondMediaItemSortProperty) {
             return -1 * this.sortOptions.dir;
         }
         if (firstMediaItemSortProperty > secondMediaItemSortProperty) {
-            return 1 * this.sortOptions.dir;
+            return this.sortOptions.dir;
         }
 
         return 0;

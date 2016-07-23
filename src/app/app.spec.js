@@ -1,30 +1,30 @@
 import { App } from './app';
 
 describe('App', () => {
-    let app = new App(jQuery);
+    const app = new App(jQuery);
 
-    describe('constructor', ()=>{
-        it('should create Api Service', ()=>{
+    describe('constructor', () => {
+        it('should create Api Service', () => {
             expect(app.apiService).toBeDefined();
         });
 
-        it('should create Event Emitter', ()=>{
+        it('should create Event Emitter', () => {
             expect(app.eventEmitter).toBeDefined();
         });
 
-        it('should create Polling Service', ()=>{
+        it('should create Polling Service', () => {
             expect(app.pollingService).toBeDefined();
         });
 
-        it('should create Home Component', ()=>{
+        it('should create Home Component', () => {
             expect(app.homeComponent).toBeDefined();
         });
     });
 
-    describe('bootstrap', ()=> {
-        let homeActivateSpy = jasmine.createSpy('homeComponent.activate');
+    describe('bootstrap', () => {
+        const homeActivateSpy = jasmine.createSpy('homeComponent.activate');
 
-        app.pollingService = jasmine.createSpyObj('PollingService Spy',['start','init']);
+        app.pollingService = jasmine.createSpyObj('PollingService Spy', ['start', 'init']);
 
         app.homeComponent = {
             activate: homeActivateSpy
@@ -32,9 +32,8 @@ describe('App', () => {
 
         app.bootstrap();
 
-        it('should init polling service', ()=>{
-            "use strict";
-           expect(app.pollingService.init).toHaveBeenCalled();
+        it('should init polling service', () => {
+            expect(app.pollingService.init).toHaveBeenCalled();
         });
 
         it('should start polling service', () => {
@@ -45,5 +44,5 @@ describe('App', () => {
             expect(homeActivateSpy).toHaveBeenCalled();
         });
     });
-
 });
+

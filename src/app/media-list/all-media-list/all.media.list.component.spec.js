@@ -1,19 +1,20 @@
 import { AllMediaListComponent } from './all.media.list.compontent';
 import { EVENT_POLLING_RESULT, EVENT_WATCHLIST_ADD } from '../../app.constants';
 
-describe('AllMediaListComponent', ()=>{
-    "use strict";
-    let eventEmitterSpy, mediaListService;
+describe('AllMediaListComponent', () => {
+    let eventEmitterSpy;
+    let mediaListService;
 
-    beforeEach(()=> {
-        eventEmitterSpy = jasmine.createSpyObj("EventEmitter", ['on', 'emit']);
-        mediaListService = jasmine.createSpyObj("MediaListService", ['updateCache', 'getMediaList']);
+    beforeEach(() => {
+        eventEmitterSpy = jasmine.createSpyObj('EventEmitter', ['on', 'emit']);
+        mediaListService = jasmine.createSpyObj('MediaListService',
+            ['updateCache', 'getMediaList']);
     });
 
-    describe('activate', ()=>{
-        var allMediaListComponent;
+    describe('activate', () => {
+        let allMediaListComponent;
 
-        beforeEach(()=>{
+        beforeEach(() => {
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
         });
 
@@ -21,37 +22,35 @@ describe('AllMediaListComponent', ()=>{
             expect(allMediaListComponent.activate).toBeDefined();
         });
 
-        it('should call optionsComponent activate', ()=>{
+        it('should call optionsComponent activate', () => {
             spyOn(allMediaListComponent.optionsComponent, 'activate');
             allMediaListComponent.activate();
             expect(allMediaListComponent.optionsComponent.activate).toHaveBeenCalled();
         });
 
-        it('should call super activate', ()=>{
-            let allMediaComponentSuper = Object.getPrototypeOf(AllMediaListComponent.prototype);
+        it('should call super activate', () => {
+            const allMediaComponentSuper = Object.getPrototypeOf(AllMediaListComponent.prototype);
             spyOn(allMediaComponentSuper, 'activate');
             allMediaListComponent.activate();
             expect(allMediaComponentSuper.activate).toHaveBeenCalled();
         });
 
-        it('should register callback to EVENT_POLLING_RESULT event', ()=> {
+        it('should register callback to EVENT_POLLING_RESULT event', () => {
             spyOn(allMediaListComponent, 'onPollingResult');
-            eventEmitterSpy.on.and.callFake((eventKey, callbackFn)=>{
-                console.log("spy called ",callbackFn)
+            eventEmitterSpy.on.and.callFake((eventKey, callbackFn) => {
                 callbackFn();
             });
             allMediaListComponent.activate();
-            let dummyItems = [{id: 1, title: 'dummy'}];
-            expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_POLLING_RESULT,jasmine.any(Function));
-
+            expect(eventEmitterSpy.on).toHaveBeenCalledWith(
+                EVENT_POLLING_RESULT, jasmine.any(Function));
             expect(allMediaListComponent.onPollingResult).toHaveBeenCalled();
         });
     });
 
-    describe('onPollingResult', ()=>{
-        var allMediaListComponent;
+    describe('onPollingResult', () => {
+        let allMediaListComponent;
 
-        beforeEach(()=>{
+        beforeEach(() => {
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
         });
 
@@ -59,19 +58,19 @@ describe('AllMediaListComponent', ()=>{
             expect(allMediaListComponent.onPollingResult).toBeDefined();
         });
 
-        it('should update media cache', ()=>{
-            let dummyPollingResult = [{id: 1, title: "dummy"}];
-            spyOn(allMediaListComponent,'updateMediaList');
+        it('should update media cache', () => {
+            const dummyPollingResult = [{ id: 1, title: 'dummy' }];
+            spyOn(allMediaListComponent, 'updateMediaList');
             allMediaListComponent.onPollingResult(dummyPollingResult);
             expect(mediaListService.updateCache).toHaveBeenCalledWith(dummyPollingResult);
             expect(allMediaListComponent.updateMediaList).toHaveBeenCalled();
         });
     });
 
-    describe('updateMediaList', ()=>{
-        var allMediaListComponent;
+    describe('updateMediaList', () => {
+        let allMediaListComponent;
 
-        beforeEach(()=>{
+        beforeEach(() => {
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
         });
 
@@ -79,8 +78,8 @@ describe('AllMediaListComponent', ()=>{
             expect(allMediaListComponent.updateMediaList).toBeDefined();
         });
 
-        it('should update media list', ()=>{
-            let dummyList = [1,2,3,4,5];
+        it('should update media list', () => {
+            const dummyList = [1, 2, 3, 4, 5];
             mediaListService.getMediaList.and.returnValue(dummyList);
             allMediaListComponent.updateMediaList();
 
@@ -88,7 +87,7 @@ describe('AllMediaListComponent', ()=>{
             expect(allMediaListComponent.items).toEqual(dummyList);
         });
 
-        it('should call render', ()=>{
+        it('should call render', () => {
             spyOn(allMediaListComponent.view, 'render');
             allMediaListComponent.updateMediaList();
 
@@ -96,10 +95,10 @@ describe('AllMediaListComponent', ()=>{
         });
     });
 
-    describe('addToWatchLaterList', ()=>{
+    describe('addToWatchLaterList', () => {
         let allMediaListComponent;
 
-        beforeEach(()=>{
+        beforeEach(() => {
             allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
         });
 
@@ -107,12 +106,10 @@ describe('AllMediaListComponent', ()=>{
             expect(allMediaListComponent.addToWatchLaterList).toBeDefined();
         });
 
-        it('should emit EVENT_WATCHLIST_ADD with given id', ()=>{
-            var dummyId = 121;
+        it('should emit EVENT_WATCHLIST_ADD with given id', () => {
+            const dummyId = 121;
             allMediaListComponent.addToWatchLaterList(dummyId);
             expect(eventEmitterSpy.emit).toHaveBeenCalledWith(EVENT_WATCHLIST_ADD, dummyId);
         });
     });
-
-
 });

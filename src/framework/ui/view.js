@@ -1,9 +1,10 @@
-import { ERROR_UNDEFINED_TEMPLATE_RENDER, ERROR_CLICK_ON_UNDEFINED_FUNCTION, ERROR_CHANGE_ON_UNDEFINED_FUNCTION } from '../framework.constants';
+import { ERROR_UNDEFINED_TEMPLATE_RENDER, ERROR_CLICK_ON_UNDEFINED_FUNCTION,
+    ERROR_CHANGE_ON_UNDEFINED_FUNCTION } from '../framework.constants';
 
 export class View {
     constructor(component) {
         this.component = component;
-        this.$template = jQuery(`<div></div>`);
+        this.$template = jQuery('<div></div>');
     }
 
     buildView(DOMElement) {
@@ -54,7 +55,7 @@ export class View {
 
             if (functionReference && typeof functionReference === 'function') {
                 $changedItem.change((event) => {
-                    let val = jQuery(event.target).val();
+                    const val = jQuery(event.target).val();
                     functionReference.call(this.component, val);
                 });
             } else {

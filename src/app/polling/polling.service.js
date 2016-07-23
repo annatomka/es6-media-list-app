@@ -1,4 +1,6 @@
-import { POLLING_INTERVAL_MS, EVENT_POLLING_RESULT, EVENT_POLLING_INTERVAL_CHANGED } from '../app.constants';
+/* eslint-disable no-alert */
+import { POLLING_INTERVAL_MS, EVENT_POLLING_RESULT,
+    EVENT_POLLING_INTERVAL_CHANGED, POLLING_STOPPED_MESSAGE } from '../app.constants';
 
 export class PollingService {
     constructor(eventEmitter, ApiService) {
@@ -27,6 +29,9 @@ export class PollingService {
     poll() {
         this.apiService.getAllMediaItems().then(result => {
             this.eventEmitter.emit(EVENT_POLLING_RESULT, result);
+        }, () => {
+            this.stop();
+            alert(POLLING_STOPPED_MESSAGE);
         });
     }
 

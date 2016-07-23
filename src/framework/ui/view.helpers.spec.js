@@ -1,36 +1,31 @@
 import { list } from './view.helpers';
 
-describe('list', ()=> {
-    "use strict";
+describe('list', () => {
     let templateFn;
-    beforeEach(()=>{
-         templateFn = jasmine.createSpy('templateFn');
+    beforeEach(() => {
+        templateFn = jasmine.createSpy('templateFn');
     });
 
-    it('should call template function on every item', ()=> {
-        let items = [1, 2, 3];
-
+    it('should call template function on every item', () => {
+        const items = [1, 2, 3];
         list(items, templateFn);
 
         expect(templateFn).toHaveBeenCalledTimes(items.length);
     });
 
-    it('should return empty string when empty items given', ()=>{
-        let items = [];
+    it('should return empty string when empty items given', () => {
+        const items = [];
+        const listResult = list(items, templateFn);
 
-        let listResult = list(items, templateFn);
         expect(listResult).toEqual('');
     });
 
     it('should return repeated template bound to given items', () => {
-       let items = [1,2,3];
-       let expectedResult = "123";
+        const items = [1, 2, 3];
+        const expectedResult = '123';
+        const myTemplateFn = (item) => `${item}`;
+        const templateResult = list(items, myTemplateFn);
 
-       let myTemplateFn = (item)=>{
-           return `${item}`;
-       };
-
-       let templateResult = list(items, myTemplateFn);
-       expect(templateResult).toEqual(expectedResult);
+        expect(templateResult).toEqual(expectedResult);
     });
 });

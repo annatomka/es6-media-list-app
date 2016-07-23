@@ -1,15 +1,17 @@
 import { ApiService } from './api.service';
 
 describe('ApiService', () => {
-    describe('getAllMediaItems', ()=> {
-        let apiService, mockMediaItems, jQuery;
+    describe('getAllMediaItems', () => {
+        let apiService;
+        let mockMediaItems;
+        let jQuery;
 
-        beforeEach(()=> {
+        beforeEach(() => {
             mockMediaItems = [{
-                title: "mock media item"
+                title: 'mock media item'
             }];
 
-            jQuery = jasmine.createSpyObj("jQuery", ["getJSON"]);
+            jQuery = jasmine.createSpyObj('jQuery', ['getJSON']);
             jQuery.getJSON.and.returnValue(mockMediaItems);
 
             apiService = new ApiService(jQuery);
@@ -25,9 +27,8 @@ describe('ApiService', () => {
         });
 
         it('should return the requested value', () => {
-            let result = apiService.getAllMediaItems();
+            const result = apiService.getAllMediaItems();
             expect(result).toEqual(mockMediaItems);
         });
-
     });
 });

@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/media-list/all-media-list/all.media.list.component.spec.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/media-list/all-media-list/</a> all.media.list.component.spec.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>60/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>22/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>60/60</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { AllMediaListComponent } from './all.media.list.compontent';
+import { EVENT_POLLING_RESULT, EVENT_WATCHLIST_ADD } from '../../app.constants';
+&nbsp;
+describe('AllMediaListComponent', () =&gt; {
+    let eventEmitterSpy;
+    let mediaListService;
+&nbsp;
+    beforeEach(() =&gt; {
+        eventEmitterSpy = jasmine.createSpyObj('EventEmitter', ['on', 'emit']);
+        mediaListService = jasmine.createSpyObj('MediaListService',
+            ['updateCache', 'getMediaList']);
+    });
+&nbsp;
+    describe('activate', () =&gt; {
+        let allMediaListComponent;
+&nbsp;
+        beforeEach(() =&gt; {
+            allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
+        });
+&nbsp;
+        it('should exist', () =&gt; {
+            expect(allMediaListComponent.activate).toBeDefined();
+        });
+&nbsp;
+        it('should call optionsComponent activate', () =&gt; {
+            spyOn(allMediaListComponent.optionsComponent, 'activate');
+            allMediaListComponent.activate();
+            expect(allMediaListComponent.optionsComponent.activate).toHaveBeenCalled();
+        });
+&nbsp;
+        it('should call super activate', () =&gt; {
+            const allMediaComponentSuper = Object.getPrototypeOf(AllMediaListComponent.prototype);
+            spyOn(allMediaComponentSuper, 'activate');
+            allMediaListComponent.activate();
+            expect(allMediaComponentSuper.activate).toHaveBeenCalled();
+        });
+&nbsp;
+        it('should register callback to EVENT_POLLING_RESULT event', () =&gt; {
+            spyOn(allMediaListComponent, 'onPollingResult');
+            eventEmitterSpy.on.and.callFake((eventKey, callbackFn) =&gt; {
+                callbackFn();
+            });
+            allMediaListComponent.activate();
+            expect(eventEmitterSpy.on).toHaveBeenCalledWith(
+                EVENT_POLLING_RESULT, jasmine.any(Function));
+            expect(allMediaListComponent.onPollingResult).toHaveBeenCalled();
+        });
+    });
+&nbsp;
+    describe('onPollingResult', () =&gt; {
+        let allMediaListComponent;
+&nbsp;
+        beforeEach(() =&gt; {
+            allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
+        });
+&nbsp;
+        it('should exist', () =&gt; {
+            expect(allMediaListComponent.onPollingResult).toBeDefined();
+        });
+&nbsp;
+        it('should update media cache', () =&gt; {
+            const dummyPollingResult = [{ id: 1, title: 'dummy' }];
+            spyOn(allMediaListComponent, 'updateMediaList');
+            allMediaListComponent.onPollingResult(dummyPollingResult);
+            expect(mediaListService.updateCache).toHaveBeenCalledWith(dummyPollingResult);
+            expect(allMediaListComponent.updateMediaList).toHaveBeenCalled();
+        });
+    });
+&nbsp;
+    describe('updateMediaList', () =&gt; {
+        let allMediaListComponent;
+&nbsp;
+        beforeEach(() =&gt; {
+            allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
+        });
+&nbsp;
+        it('should exist', () =&gt; {
+            expect(allMediaListComponent.updateMediaList).toBeDefined();
+        });
+&nbsp;
+        it('should update media list', () =&gt; {
+            const dummyList = [1, 2, 3, 4, 5];
+            mediaListService.getMediaList.and.returnValue(dummyList);
+            allMediaListComponent.updateMediaList();
+&nbsp;
+            expect(mediaListService.getMediaList).toHaveBeenCalled();
+            expect(allMediaListComponent.items).toEqual(dummyList);
+        });
+&nbsp;
+        it('should call render', () =&gt; {
+            spyOn(allMediaListComponent.view, 'render');
+            allMediaListComponent.updateMediaList();
+&nbsp;
+            expect(allMediaListComponent.view.render).toHaveBeenCalled();
+        });
+    });
+&nbsp;
+    describe('addToWatchLaterList', () =&gt; {
+        let allMediaListComponent;
+&nbsp;
+        beforeEach(() =&gt; {
+            allMediaListComponent = new AllMediaListComponent(eventEmitterSpy, mediaListService);
+        });
+&nbsp;
+        it('should exist', () =&gt; {
+            expect(allMediaListComponent.addToWatchLaterList).toBeDefined();
+        });
+&nbsp;
+        it('should emit EVENT_WATCHLIST_ADD with given id', () =&gt; {
+            const dummyId = 121;
+            allMediaListComponent.addToWatchLaterList(dummyId);
+            expect(eventEmitterSpy.emit).toHaveBeenCalledWith(EVENT_WATCHLIST_ADD, dummyId);
+        });
+    });
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jul 23 2016 19:52:25 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

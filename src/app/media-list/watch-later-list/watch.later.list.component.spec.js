@@ -1,22 +1,24 @@
 import { WatchLaterListComponent } from './watch.later.list.component';
-import { EVENT_MEDIA_LIST_UPDATED, EVENT_WATCHLIST_ADD, EVENT_WATCHLIST_REMOVE } from '../../app.constants';
+import { EVENT_MEDIA_LIST_UPDATED, EVENT_WATCHLIST_ADD,
+    EVENT_WATCHLIST_REMOVE } from '../../app.constants';
 
-describe('WatchLaterListComponent', ()=> {
-    "use strict";
-    let eventEmitterSpy, watchListServiceSpy;
+describe('WatchLaterListComponent', () => {
+    let eventEmitterSpy;
+    let watchListServiceSpy;
 
-    beforeEach(()=> {
-        eventEmitterSpy = jasmine.createSpyObj("EventEmitter", ['on', 'emit']);
-        watchListServiceSpy = jasmine.createSpyObj("WatchListService", ['updateWatchList', 'getWatchList', 'addToWatchList', 'removeFromWatchList']);
+    beforeEach(() => {
+        eventEmitterSpy = jasmine.createSpyObj('EventEmitter', ['on', 'emit']);
+        watchListServiceSpy = jasmine.createSpyObj('WatchListService', ['updateWatchList',
+            'getWatchList', 'addToWatchList', 'removeFromWatchList']);
     });
 
 
-    describe('activate', ()=> {
+    describe('activate', () => {
         let watchListComponent;
 
-        beforeEach(()=> {
+        beforeEach(() => {
             watchListComponent = new WatchLaterListComponent(eventEmitterSpy, watchListServiceSpy);
-            eventEmitterSpy.on.and.callFake((eventKey, callbackFn)=> {
+            eventEmitterSpy.on.and.callFake((eventKey, callbackFn) => {
                 callbackFn();
             });
         });
@@ -25,14 +27,17 @@ describe('WatchLaterListComponent', ()=> {
             expect(watchListComponent.activate).toBeDefined();
         });
 
-        it('should register event listeners', ()=> {
+        it('should register event listeners', () => {
             watchListComponent.activate();
-            expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_MEDIA_LIST_UPDATED, jasmine.any(Function));
-            expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_WATCHLIST_ADD, jasmine.any(Function));
-            expect(eventEmitterSpy.on).toHaveBeenCalledWith(EVENT_WATCHLIST_REMOVE, jasmine.any(Function));
+            expect(eventEmitterSpy.on).toHaveBeenCalledWith(
+                EVENT_MEDIA_LIST_UPDATED, jasmine.any(Function));
+            expect(eventEmitterSpy.on).toHaveBeenCalledWith(
+                EVENT_WATCHLIST_ADD, jasmine.any(Function));
+            expect(eventEmitterSpy.on).toHaveBeenCalledWith(
+                EVENT_WATCHLIST_REMOVE, jasmine.any(Function));
         });
 
-        it('should call listeners on events', ()=> {
+        it('should call listeners on events', () => {
             spyOn(watchListComponent, 'onMediaListUpdated');
             spyOn(watchListComponent, 'addItemToWatchList');
             spyOn(watchListComponent, 'removeItemFromWatchList');
@@ -47,7 +52,7 @@ describe('WatchLaterListComponent', ()=> {
     describe('onMediaListUpdated', () => {
         let watchListComponent;
 
-        beforeEach(()=> {
+        beforeEach(() => {
             watchListComponent = new WatchLaterListComponent(eventEmitterSpy, watchListServiceSpy);
         });
 
@@ -55,24 +60,24 @@ describe('WatchLaterListComponent', ()=> {
             expect(watchListComponent.onMediaListUpdated).toBeDefined();
         });
 
-        it('should update watch list', ()=> {
-            var dummyCache = {1: 'dummy'};
+        it('should update watch list', () => {
+            const dummyCache = { 1: 'dummy' };
             watchListComponent.onMediaListUpdated(dummyCache);
             expect(watchListServiceSpy.updateWatchList).toHaveBeenCalledWith(dummyCache);
         });
 
-        it('should render view', ()=> {
-            var dummyCache = {1: 'dummy'};
+        it('should render view', () => {
+            const dummyCache = { 1: 'dummy' };
             spyOn(watchListComponent.view, 'render');
             watchListComponent.onMediaListUpdated(dummyCache);
             expect(watchListComponent.view.render).toHaveBeenCalled();
         });
     });
 
-    describe('addItemToWatchList', ()=> {
+    describe('addItemToWatchList', () => {
         let watchListComponent;
 
-        beforeEach(()=> {
+        beforeEach(() => {
             watchListComponent = new WatchLaterListComponent(eventEmitterSpy, watchListServiceSpy);
         });
 
@@ -80,9 +85,9 @@ describe('WatchLaterListComponent', ()=> {
             expect(watchListComponent.addItemToWatchList).toBeDefined();
         });
 
-        it('should add item to watchlist', ()=> {
-            let dummyId = 2;
-            let dummyResult = ["dummy"];
+        it('should add item to watchlist', () => {
+            const dummyId = 2;
+            const dummyResult = ['dummy'];
             watchListServiceSpy.getWatchList.and.returnValue(dummyResult);
             watchListComponent.addItemToWatchList(dummyId);
             expect(watchListServiceSpy.addToWatchList).toHaveBeenCalledWith(dummyId);
@@ -90,18 +95,18 @@ describe('WatchLaterListComponent', ()=> {
             expect(watchListComponent.watchListItems).toEqual(dummyResult);
         });
 
-        it('should render view', ()=> {
-            var dummyCache = {1: 'dummy'};
+        it('should render view', () => {
+            const dummyCache = { 1: 'dummy' };
             spyOn(watchListComponent.view, 'render');
             watchListComponent.addItemToWatchList(dummyCache);
             expect(watchListComponent.view.render).toHaveBeenCalled();
         });
     });
 
-    describe('removeItemFromWatchList', ()=> {
+    describe('removeItemFromWatchList', () => {
         let watchListComponent;
 
-        beforeEach(()=> {
+        beforeEach(() => {
             watchListComponent = new WatchLaterListComponent(eventEmitterSpy, watchListServiceSpy);
         });
 
@@ -110,8 +115,8 @@ describe('WatchLaterListComponent', ()=> {
             expect(watchListComponent.removeItemFromWatchList).toBeDefined();
         });
 
-        it('should render view', ()=> {
-            var dummyCache = {1: 'dummy'};
+        it('should render view', () => {
+            const dummyCache = { 1: 'dummy' };
             spyOn(watchListComponent.view, 'render');
             watchListComponent.removeItemFromWatchList(dummyCache);
             expect(watchListComponent.view.render).toHaveBeenCalled();

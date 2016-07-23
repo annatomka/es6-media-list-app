@@ -3,7 +3,7 @@ import { OptionsView } from './options.view';
 import { Component } from '../../../framework/component/component';
 
 
-export class OptionsComponent extends Component{
+export class OptionsComponent extends Component {
     constructor(mediaListComponent, eventEmitter, mediaListService) {
         super();
         this.mediaListComponent = mediaListComponent;
@@ -22,7 +22,7 @@ export class OptionsComponent extends Component{
         this.mediaListComponent.updateMediaList(this.mediaListService.mediaList);
     }
 
-    onFilterSelectionChanged(newValue){
+    onFilterSelectionChanged(newValue) {
         const filteredMediaList = this.mediaListService.updateFilterBy(newValue);
         this.mediaListComponent.updateMediaList(filteredMediaList);
     }

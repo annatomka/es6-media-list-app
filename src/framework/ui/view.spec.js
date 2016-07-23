@@ -1,5 +1,6 @@
 import { View } from './view';
-import { ERROR_UNDEFINED_TEMPLATE_RENDER, ERROR_CLICK_ON_UNDEFINED_FUNCTION, ERROR_CHANGE_ON_UNDEFINED_FUNCTION } from '../framework.constants';
+import { ERROR_UNDEFINED_TEMPLATE_RENDER, ERROR_CLICK_ON_UNDEFINED_FUNCTION,
+    ERROR_CHANGE_ON_UNDEFINED_FUNCTION } from '../framework.constants';
 
 describe('View', () => {
     describe('constructor', () => {
@@ -83,9 +84,9 @@ describe('View', () => {
 
     describe('registerClickHandlers', () => {
         it('should call component function on click', () => {
-            let view = new View();
-            let dummyElement = '<button data-click="dummyClick"></button>';
-            let $dummyElement = jQuery(dummyElement);
+            const view = new View();
+            const dummyElement = '<button data-click="dummyClick"></button>';
+            const $dummyElement = jQuery(dummyElement);
 
             spyOn(view, 'template').and.returnValue('<button data-click="dummyClick"></button>');
             view.component = jasmine.createSpyObj('view component', ['dummyClick']);
@@ -98,9 +99,9 @@ describe('View', () => {
         });
 
         it('should throw error when function not exists', () => {
-            let view = new View();
-            let dummyElement = '<button data-click="badDummyClick"></button>';
-            let $dummyElement = jQuery(dummyElement);
+            const view = new View();
+            const dummyElement = '<button data-click="badDummyClick"></button>';
+            const $dummyElement = jQuery(dummyElement);
 
             spyOn(view, 'template').and.returnValue(dummyElement);
             view.component = jasmine.createSpyObj('view component', ['dummyClick']);
@@ -114,9 +115,9 @@ describe('View', () => {
 
     describe('registerChangeHandlers', () => {
         it('should call component function on change', () => {
-            let view = new View();
-            let dummyElement = '<input data-change="dummyChange"/>';
-            let $dummyElement = jQuery(dummyElement);
+            const view = new View();
+            const dummyElement = '<input data-change="dummyChange"/>';
+            const $dummyElement = jQuery(dummyElement);
 
             spyOn(view, 'template').and.returnValue(dummyElement);
             view.component = jasmine.createSpyObj('view component', ['dummyChange']);
@@ -129,9 +130,9 @@ describe('View', () => {
         });
 
         it('should throw error when function not exists', () => {
-            let view = new View();
-            let dummyElement = '<input data-change="badDummyChange"/>';
-            let $dummyElement = jQuery(dummyElement);
+            const view = new View();
+            const dummyElement = '<input data-change="badDummyChange"/>';
+            const $dummyElement = jQuery(dummyElement);
 
             spyOn(view, 'template').and.returnValue(dummyElement);
             view.component = jasmine.createSpyObj('view component', ['dummyChange']);

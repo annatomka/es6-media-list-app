@@ -1,5 +1,4 @@
-import { StorageService } from '../../../framework/storage/storage.service';
-import { STORAGE_ID_WATCH_LATER, EVENT_MEDIA_LIST_UPDATED } from '../../app.constants';
+import { STORAGE_ID_WATCH_LATER } from '../../app.constants';
 
 export class WatchListService {
     constructor(eventEmitter, storageService) {
@@ -18,11 +17,11 @@ export class WatchListService {
     }
 
     getWatchList() {
-        return this.watchListEntries.map((entry)=>this.getCachedMediaForEntry(entry));
+        return this.watchListEntries.map((entry) => this.getCachedMediaForEntry(entry));
     }
 
     getCachedMediaForEntry(entry) {
-        let mediaItem = this.mediaListCache[entry.mediaId];
+        const mediaItem = this.mediaListCache[entry.mediaId];
         mediaItem.addedAt = entry.addedAt;
         return mediaItem;
     }
@@ -38,9 +37,9 @@ export class WatchListService {
     }
 
     selectCachedMediaItemForWatchList() {
-        let updatedWatchListEntries = [];
+        const updatedWatchListEntries = [];
         this.watchListEntries.forEach((entry) => {
-            let mediaItem = this.mediaListCache[entry.mediaId];
+            const mediaItem = this.mediaListCache[entry.mediaId];
             if (mediaItem) {
                 updatedWatchListEntries.push(entry);
             }
@@ -54,14 +53,12 @@ export class WatchListService {
     }
 
     addToWatchList(id) {
-        this.watchListEntries.push({mediaId: id, addedAt: new Date()});
+        this.watchListEntries.push({ mediaId: id, addedAt: new Date() });
         this.updateWatchListInStorage();
     }
 
     removeFromWatchList(id) {
-        this.watchListEntries = this.watchListEntries.filter((entry) => {
-            return entry.mediaId !== id;
-        });
+        this.watchListEntries = this.watchListEntries.filter(entry => entry.mediaId !== id);
         this.updateWatchListInStorage();
     }
 }

@@ -14,29 +14,29 @@ describe('Component', () => {
             expect(component.activate).toBeDefined();
         });
 
-        it('should call view buildView with component element when it has view', ()=> {
-            let component = new Component();
+        it('should call view buildView with component element when it has view', () => {
+            const component = new Component();
             component.view = jasmine.createSpyObj('view', ['buildView']);
             component.activate();
             expect(component.view.buildView).toHaveBeenCalledWith(component.element);
         });
 
         it('should not call buildView when view is not defined', () => {
-            let component = new Component();
+            const component = new Component();
             component.activate();
             expect(component.view).not.toBeDefined();
         });
     });
 
     describe('setElement', () => {
-        it('should exist', ()=>{
-            let component = new Component();
+        it('should exist', () => {
+            const component = new Component();
             expect(component.setElement).toBeDefined();
         });
 
         it('should set given element', () => {
-            let component = new Component();
-            var dummyElement = jQuery('');
+            const component = new Component();
+            const dummyElement = jQuery('');
 
             expect(component.element).not.toEqual(dummyElement);
             component.setElement(dummyElement);
