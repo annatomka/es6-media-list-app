@@ -53,7 +53,7 @@ export class WatchListService {
     }
 
     addToWatchList(id) {
-        this.watchListEntries.push({ mediaId: id, addedAt: new Date() });
+        this.watchListEntries.push({ mediaId: id, addedAt: new Date(Date.now()) });
         this.updateWatchListInStorage();
     }
 

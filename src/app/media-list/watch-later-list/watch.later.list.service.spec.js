@@ -134,14 +134,13 @@ describe('WatchListService', () => {
 
         it('should add the given id with current date to the watchListEntries', () => {
             const dummyId = 12;
-            const OldDate = Date;
-
-            spyOn(window, 'Date').and.callFake(() => new OldDate());
+            const dummyDateTime = 1387636363717;
+            spyOn(window.Date, 'now').and.returnValue(dummyDateTime);
 
             watchListService.addToWatchList(dummyId);
             expect(watchListService.watchListEntries.length).toEqual(1);
             const newEntry = watchListService.watchListEntries[0];
-            expect(newEntry.addedAt.getTime()).toEqual((new OldDate()).getTime());
+            expect(newEntry.addedAt.getTime()).toEqual(dummyDateTime);
         });
     });
 
