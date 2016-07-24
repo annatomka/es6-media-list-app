@@ -107,6 +107,16 @@ describe('PollingService', () => {
             expect(eventEmitterSpy.emit)
                 .toHaveBeenCalledWith(EVENT_POLLING_RESULT, getAllMediaItemsResult);
         });
+
+        it('should call stop and window alert on error', () => {
+            spyOn(pollingService, 'stop');
+            spyOn(window, 'alert');
+            pollingService.poll();
+            getAllMediaItemsDeferred.reject();
+            jasmine.clock().tick(0);
+            expect(pollingService.stop).toHaveBeenCalled();
+            expect(window.alert).toHaveBeenCalled();
+        });
     });
 
     describe('stop', () => {
