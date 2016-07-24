@@ -5,7 +5,7 @@ export class OptionsView extends View {
         return `
             <div id="filterPanel">
                 <div id="media-filter-panel" class="m-b-10">
-                    <div class="pull-left">
+                    <div class="pull-left media-filters">
                         <span><i class="zmdi zmdi-sort-amount-asc"></i> </span>
                         <select data-change="onSortByPropertySelectionChanged" class="m-r-5">
                             <option value="id">id</option>

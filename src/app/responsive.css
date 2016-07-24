@@ -1,0 +1,43 @@
+
+@media only screen and (min-device-width: 800px) and (max-device-width: 1300px) and (min-width: 800px) and (max-width: 1300px){
+
+    .media-filters, .polling-interval{
+        width:100%;
+    }
+
+    #allMedia {
+        width: 60%;
+
+    }
+
+    #watchList {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-device-width : 799px) {
+    .media-filters, .polling-interval{
+        width:100%;
+    }
+    #allMedia {
+        width: 100%;
+
+    }
+
+    #watchList {
+        width: 100%;
+    }
+
+    .container{
+        margin-left:8%;
+        margin-right:8%;
+    }
+
+    .title.primary{
+        margin-right:0;
+    }
+
+    .media-item{
+        margin: 15px 0 15px 0;
+    }
+}
